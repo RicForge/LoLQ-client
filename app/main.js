@@ -2520,7 +2520,10 @@ function _detectChampPick(i, cb) {
 						//.ignoreColors()
 						.onComplete(function(data) {
 							// Require 98%+ champ icon image match
-							if(data.misMatchPercentage <= 2) {
+							// Ornn is special; require 100% image match
+							if(	(champion.key != 'Ornn' && data.misMatchPercentage <= 2) ||
+								(champion.key == 'Ornn' && data.misMatchPercentage == 0))
+							{
 								let matchPerc = (100 - data.misMatchPercentage).toFixed(2)
 
 								_setChampion(i, champion, matchPerc)
