@@ -90,7 +90,7 @@ ipcRenderer.on('accessTokenStatus', (event, accessToken, status, reply) => {
 		document.getElementById('accesstoken-success').style.display = 'none'
 		if(reply == 0) {
 			// Invalid key
-			statusElement.innerHTML = 'Reply: Invalid access token.'
+			statusElement.innerHTML = 'Reply: Invalid access token. <a href="https://www.lolq.org/get-access-token/">Re-request token</a>.'
 		} else if(reply == -1) {
 			// Banned key
 			statusElement.innerHTML = 'Reply: Banned. Contact ric@lolq.org'
