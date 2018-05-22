@@ -1,0 +1,218 @@
+/*
+ *
+ *   ___       ________  ___       ________
+ *  |\  \     |\   __  \|\  \     |\   __  \
+ *  \ \  \    \ \  \|\  \ \  \    \ \  \|\  \
+ *   \ \  \    \ \  \\\  \ \  \    \ \  \\\  \
+ *    \ \  \____\ \  \\\  \ \  \____\ \  \\\  \
+ *     \ \_______\ \_______\ \_______\ \_____  \
+ *      \|_______|\|_______|\|_______|\|___| \__\ 
+ *                                          \|__|
+ *
+ *   Copyright (C) 2018  Ric <ric@lolq.org>
+ *
+ *   https://www.lolq.org
+ *
+ *   This program is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ */
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * Champion data rendering
+ *
+ * ===============================================================
+ * =============================================================== */
+ 
+#champions-myteam,
+#champions-enemyteam {
+	display: none;
+}
+
+
+#summoner1-champion-data,
+#summoner2-champion-data,
+#summoner3-champion-data,
+#summoner4-champion-data,
+#summoner5-champion-data,
+#summoner6-champion-data,
+#summoner7-champion-data,
+#summoner8-champion-data,
+#summoner9-champion-data,
+#summoner10-champion-data {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	height: 80px;
+}
+
+
+.champion {
+	position: absolute;
+}
+
+
+.c-icon {
+	left: 14px;
+	top: 6px;
+}
+
+.c-iconTooltip {
+	left: 14px;
+	top: 6px;
+	width: 20px;
+	height: 20px;
+	-webkit-app-region: no-drag;
+	z-index: 1;
+}
+
+
+.c-roles {
+	left: 37px;
+	top: 6px;
+}
+
+.c-role {
+	position: relative;
+}
+
+
+#summoner1-role2-container,
+#summoner1-role3-container,
+#summoner2-role2-container,
+#summoner2-role3-container,
+#summoner3-role2-container,
+#summoner3-role3-container,
+#summoner4-role2-container,
+#summoner4-role3-container,
+#summoner5-role2-container,
+#summoner5-role3-container,
+#summoner6-role2-container,
+#summoner6-role3-container,
+#summoner7-role2-container,
+#summoner7-role3-container,
+#summoner8-role2-container,
+#summoner8-role3-container,
+#summoner9-role2-container,
+#summoner9-role3-container,
+#summoner10-role2-container,
+#summoner10-role3-container {
+	display: none;
+}
+
+
+.c-damage-composition-txt {
+	top: 31px;
+	left: 9px;
+	-webkit-app-region: no-drag;
+}
+
+.c-damage-composition {
+	top: 33px;
+	left: 38px;
+	font-size: 0 !important;
+	width: 147px;
+	-webkit-app-region: no-drag;
+}
+
+.c-damage-composition .physicalDamage {
+	position: relative;
+	display: inline-block;
+	height: 12px;
+}
+
+.c-damage-composition .magicDamage {
+	position: relative;
+	display: inline-block;
+	height: 12px;
+}
+
+.c-damage-composition .trueDamage {
+	position: relative;
+	display: inline-block;
+	height: 12px;
+}
+
+
+.c-role-placement {
+	top: 19px;
+	right: 65px;
+	-webkit-app-region: no-drag;
+}
+
+.c-role-positions {
+	top: 26px;
+	left: 236px;
+	-webkit-app-region: no-drag;
+}
+
+.c-role-placement-arrow {
+	top: 22px;
+	right: 30px;
+}
+
+.c-role-placement-delta {
+	top: 24px;
+	left: 273px;
+	-webkit-app-region: no-drag;
+}
+
+
+.c-best-winrate-vs-txt,
+.c-worst-winrate-vs-txt {
+	text-align: right;
+	bottom: 5px;
+	left: 5px;
+}
+
+.c-winrates-img {
+	bottom: 4px;
+}
+
+.c-tooltip-img1, .c-winrate-img1 { left: 37px; }
+.c-tooltip-img2, .c-winrate-img2 { left: 62px; }
+.c-tooltip-img3, .c-winrate-img3 { left: 87px; }
+.c-tooltip-img4, .c-winrate-img4 { left: 112px; }
+.c-tooltip-img5, .c-winrate-img5 { left: 137px; }
+.c-tooltip-img6, .c-winrate-img6 { left: 162px; }
+.c-tooltip-img7, .c-winrate-img7 { left: 187px; }
+.c-tooltip-img8, .c-winrate-img8 { left: 212px; }
+.c-tooltip-img9, .c-winrate-img9 { left: 237px; }
+.c-tooltip-img10, .c-winrate-img10 { left: 262px; }
+
+.c-winrate-img-tooltip {
+	-webkit-app-region: no-drag;
+	bottom: 2px;
+	width: 23px;
+	height: 23px;
+	z-index: 1;
+}
+
+.c-winrates-notenough-data {
+	-webkit-app-region: no-drag;
+	left: 70px;
+	bottom: 5px;
+}
+
+.c-winrates-swap-btn {
+	position: absolute;
+	bottom: 9px;
+	right: 2px;
+	-webkit-app-region: no-drag;
+	height: 12px;
+	width: 12px;
+}

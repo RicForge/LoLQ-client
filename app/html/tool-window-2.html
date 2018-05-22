@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+
+	<title>LoLQ - Enemy team</title>
+
+	<link rel="stylesheet" href="../css/normalize.css">
+	<link rel="stylesheet" href="../css/balloon.css">
+
+	<link rel="stylesheet" href="../css/fonts.css">
+	<link rel="stylesheet" href="../css/common-layout.css">
+	<link rel="stylesheet" href="../css/tool-window-common-layout.css">
+	<link rel="stylesheet" href="../css/tool-window-2-layout.css">
+	<link rel="stylesheet" href="../css/summonerData-layout.css">
+	<link rel="stylesheet" href="../css/championData-layout.css">
+</head>
+
+<body>
+
+	<header>
+		<div id="title">
+			<h1>Enemy team</h1>
+		</div>
+		
+		<div id="title-bar-btns">
+			<div id="title-bar-btns-inner">
+				<button id="settings-btn">&nbsp;</button>
+				<button id="about-btn">?</button>
+				<button id="min-btn-tray">_</button>
+				<button id="close-btn">x</button>
+			</div>
+		</div>
+	</header>
+
+	<div id="content">
+		<div id="waiting-for-champselect">
+			<h2>Waiting for champion select</h2>
+			<p class="loading" style="font-size: 50px; margin-top: 20px; margin-left: -30px;"></p>
+		</div>
+
+		<div id="summoners-enemyteam">
+			<div id="summoner6">
+			</div>
+
+			<div id="summoner7">
+				<!--
+				<button class="s-remove-summoner" onclick="removeSummoner(i); return false;" data-balloon="Remove Summoner" data-balloon-pos="right" data-balloon-blunt>x</button>
+				<span class="summoner s-summoner-info"><strong>PleaseDontCampMe (43) - <span class="s-rank">PLATINUM III</span> 120LP</strong></span>
+				<span class="summoner s-last-games">
+					Last: 5/1/3 as KHA'ZIX <span class="loss">(LOSS)</span> 15h ago<br>
+					As MORDEKAISER: 10/8/12 <span class="win">(WIN)</span> 10months ago
+				</span>
+				<span class="summoner s-last-ten-winrate" data-balloon="Last 10 matches winrate" data-balloon-pos="up-left" data-balloon-blunt>70% (7W 3L)</span>
+				<span class="summoner s-main-champs-txt">Main:</span>
+				<span class="s-main-champ-tooltip s-main-champ-1-tooltip" data-balloon="55/100 games as Jax" data-balloon-pos="up" data-balloon-blunt></span>
+				<img class="summoner s-main-champ-1" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Jax.png" width="23" height="23" alt="[Jax]">
+				<span class="s-main-champ-tooltip s-main-champ-2-tooltip" data-balloon="13/100 games as Jax" data-balloon-pos="up" data-balloon-blunt></span>
+				<img class="summoner s-main-champ-2" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Draven.png" width="23" height="23" alt="[Jax]">
+				<span class="s-main-champ-tooltip s-main-champ-3-tooltip" data-balloon="34/100 games as Jax" data-balloon-pos="up" data-balloon-blunt></span>
+				<img class="summoner s-main-champ-3" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Jinx.png" width="23" height="23" alt="[Jax]">
+				<span class="summoner s-main-roles-txt">TOP / <strong>ADC</strong></span>
+				<span class="summoner s-streak loss-streak"><strong>2</strong></span>
+				<span class="summoner s-streak-txt">Loss streak</span>
+				<span class="summoner s-series-txt">Series:</span>
+				<img class="s-series-match1" src="../../themes/_common-img/series-win-dot.png">
+				<img class="s-series-match2" src="../../themes/_common-img/series-win-dot.png">
+				<img class="s-series-match3" src="../../themes/_common-img/series-win-dot.png">
+				<img class="s-series-match4" src="../../themes/_common-img/series-loss-dot.png">
+				<img class="s-series-match5" src="../../themes/_common-img/series-unplayed-dot.png">
+				-->
+			</div>
+
+			<div id="summoner8">
+			</div>
+			
+			<div id="summoner9">
+			</div>
+
+			<div id="summoner10">
+			</div>
+
+			<button class="switch-view-btn" onclick="switchView('champions', 'enemyteam');return false;">Champions</button>
+
+		</div> <!-- </div id="summoners-enemyteam"> -->
+
+		<div id="champions-enemyteam">
+			<div id="summoner6-champion-data">
+				<!--
+				<span class="champion c-iconTooltip" data-balloon="Jax" data-balloon-pos="down-left" data-balloon-blunt></span>
+				<img class="champion c-icon" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Jax.png" width="20" height="20">
+				<div class="champion c-roles">
+					<span class="c-role" data-balloon="83% Role Rate TOP" data-balloon-pos="down-left" data-balloon-blunt>
+						<a href="#" onclick="showRole(6, 1);return false;" id="summoner6-role1">JG 62%</a>
+					</span> / 
+					<span class="c-role"><a href="#" onclick="showRole(6, 2);return false;" id="summoner6-role2">TOP 30%</a></span> / 
+					<span class="c-role"><a href="#" onclick="showRole(6, 3);return false;" id="summoner6-role3">ADC 8%</a></span>
+				</div>
+				<div id="summoner6-role1-container">
+					<div class="champion c-damage-composition-txt" data-balloon="Damage composition" data-balloon-pos="down-left" data-balloon-blunt>
+						DMG
+					</div>
+					<div class="champion c-damage-composition">
+						<span class="physicalDamage" style="width: 63%;" data-balloon="63% physical" data-balloon-pos="down-left" data-balloon-blunt></span>
+						<span class="magicDamage" style="width: 25%;" data-balloon="25% magic" data-balloon-pos="down" data-balloon-blunt></span>
+						<span class="trueDamage" style="width: 12%;" data-balloon="12% true" data-balloon-pos="down" data-balloon-blunt></span>
+					</div>
+					<span class="champion c-role-placement" data-balloon="Jax's ranking amongst other TOP champions (Overall Placement score at champion.GG)" data-balloon-pos="down-right" data-balloon-length="medium" data-balloon-blunt>#39</span>
+					<span class="champion c-role-positions">/55</span>
+					<span class="champion c-role-placement-delta" data-balloon="Rank change since last patch" data-balloon-pos="down-right" data-balloon-blunt>3</span>
+					<img class="champion c-role-placement-arrow" src="../../themes/_common-img/role-placement-downarrow.png">
+					<div id="summoner6-role1-bestWRs">
+						<span class="champion c-best-winrate-vs-txt">Best<br>WR vs.</span>
+						<span class="champion c-winrate-img-tooltip c-tooltip-img1" data-balloon="55.45% winrate vs. Jax" data-balloon-pos="up-left" data-balloon-blunt></span>
+						<img class="champion c-winrates-img c-winrate-img1" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Jax.png" width="23" height="23">
+						<span class="champion c-winrate-img-tooltip c-tooltip-img2" data-balloon="55.45% winrate vs. Jax" data-balloon-pos="up-left" data-balloon-blunt></span>
+						<img class="champion c-winrates-img c-winrate-img2" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Aatrox.png" width="23" height="23">
+						<span class="champion c-winrate-img-tooltip c-tooltip-img3" data-balloon="55.45% winrate vs. Jax" data-balloon-pos="up-left" data-balloon-blunt></span>
+						<img class="champion c-winrates-img c-winrate-img3" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Akali.png" width="23" height="23">
+						<span class="champion c-winrate-img-tooltip c-tooltip-img4" data-balloon="55.45% winrate vs. Jax" data-balloon-pos="up" data-balloon-blunt></span>
+						<img class="champion c-winrates-img c-winrate-img4" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Irelia.png" width="23" height="23">
+						<span class="champion c-winrate-img-tooltip c-tooltip-img5" data-balloon="55.45% winrate vs. Jax" data-balloon-pos="up" data-balloon-blunt></span>
+						<img class="champion c-winrates-img c-winrate-img5" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Ornn.png" width="23" height="23">
+						<span class="champion c-winrate-img-tooltip c-tooltip-img6" data-balloon="55.45% winrate vs. Jax" data-balloon-pos="up" data-balloon-blunt></span>
+						<img class="champion c-winrates-img c-winrate-img6" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Sona.png" width="23" height="23">
+						<span class="champion c-winrate-img-tooltip c-tooltip-img7" data-balloon="55.45% winrate vs. Jax" data-balloon-pos="up" data-balloon-blunt></span>
+						<img class="champion c-winrates-img c-winrate-img7" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Vayne.png" width="23" height="23">
+						<span class="champion c-winrate-img-tooltip c-tooltip-img8" data-balloon="55.45% winrate vs. Jax" data-balloon-pos="up-right" data-balloon-blunt></span>
+						<img class="champion c-winrates-img c-winrate-img8" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Veigar.png" width="23" height="23">
+						<span class="champion c-winrate-img-tooltip c-tooltip-img9" data-balloon="55.45% winrate vs. Jax" data-balloon-pos="up-right" data-balloon-blunt></span>
+						<img class="champion c-winrates-img c-winrate-img9" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Lucian.png" width="23" height="23">
+						<span class="champion c-winrate-img-tooltip c-tooltip-img10" data-balloon="55.45% winrate vs. Jax" data-balloon-pos="up-right" data-balloon-blunt></span>
+						<img class="champion c-winrates-img c-winrate-img10" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Lux.png" width="23" height="23">
+					</div>
+					<div id="summoner6-role1-worstWRs" style="display: none;">
+						<span class="champion c-worst-winrate-vs-txt">Worst<br>WR vs.</span>
+						<img class="champion c-winrates-img c-winrate-img1" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Jax.png" width="23" height="23">
+						<img class="champion c-winrates-img c-winrate-img2" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Aatrox.png" width="23" height="23">
+						<img class="champion c-winrates-img c-winrate-img3" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Akali.png" width="23" height="23">
+						<img class="champion c-winrates-img c-winrate-img4" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Irelia.png" width="23" height="23">
+						<img class="champion c-winrates-img c-winrate-img5" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Ornn.png" width="23" height="23">
+						<img class="champion c-winrates-img c-winrate-img6" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Sona.png" width="23" height="23">
+						<img class="champion c-winrates-img c-winrate-img7" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Vayne.png" width="23" height="23">
+						<img class="champion c-winrates-img c-winrate-img8" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Veigar.png" width="23" height="23">
+						<img class="champion c-winrates-img c-winrate-img9" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Lucian.png" width="23" height="23">
+						<img class="champion c-winrates-img c-winrate-img10" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Lux.png" width="23" height="23">
+					</div>
+					<button class="c-winrates-swap-btn" onclick="swapWinrates(6, 1);return false;"></button>
+				</div>
+				<div id="summoner6-role2-container">
+					<div class="champion c-damage-composition-txt">
+						DMG
+					</div>
+					<div class="champion c-damage-composition">
+						<span class="physicalDamage" style="width: 70%;"></span>
+						<span class="magicDamage" style="width: 10%;"></span>
+						<span class="trueDamage" style="width: 20%;"></span>
+					</div>
+					<span class="champion c-role-placement">#5</span>
+					<span class="champion c-role-positions">/45</span>
+					<span class="champion c-role-placement-delta">15</span>
+					<img class="champion c-role-placement-arrow" src="img/role-placement-uparrow.png">
+					<div id="summoner6-role2-bestWRs">
+						<span class="champion c-best-winrate-vs-txt">Best<br>WR vs.</span>
+						<img class="champion c-winrate-vs-img1" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Ekko.png" width="23" height="23">
+						<img class="champion c-winrate-vs-img2" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Elise.png" width="23" height="23">
+						<img class="champion c-winrate-vs-img3" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Evelynn.png" width="23" height="23">
+						<img class="champion c-winrate-vs-img4" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Garen.png" width="23" height="23">
+						<img class="champion c-winrate-vs-img5" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Gnar.png" width="23" height="23">
+						<img class="champion c-winrate-vs-img6" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Gragas.png" width="23" height="23">
+						<img class="champion c-winrate-vs-img7" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Graves.png" width="23" height="23">
+						<img class="champion c-winrate-vs-img8" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Hecarim.png" width="23" height="23">
+						<img class="champion c-winrate-vs-img9" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Heimerdinger.png" width="23" height="23">
+						<img class="champion c-winrate-vs-img10" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Illaoi.png" width="23" height="23">
+					</div>
+					<div id="summoner6-role2-worstWRs" style="display: none;">
+						<span class="champion c-worst-winrate-vs-txt">Worst<br>WR vs.</span>
+						<img class="champion c-winrate-vs-img1" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Irelia.png" width="23" height="23">
+						<img class="champion c-winrate-vs-img2" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Ivern.png" width="23" height="23">
+						<img class="champion c-winrate-vs-img3" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Janna.png" width="23" height="23">
+						<img class="champion c-winrate-vs-img4" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Jax.png" width="23" height="23">
+						<img class="champion c-winrate-vs-img5" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Jayce.png" width="23" height="23">
+						<img class="champion c-winrate-vs-img6" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Jhin.png" width="23" height="23">
+						<img class="champion c-winrate-vs-img7" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Jinx.png" width="23" height="23">
+						<img class="champion c-winrate-vs-img8" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Kalista.png" width="23" height="23">
+						<img class="champion c-winrate-vs-img9" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Karma.png" width="23" height="23">
+						<img class="champion c-winrate-vs-img10" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Karthus.png" width="23" height="23">
+					</div>
+					<button class="c-winrates-swap-btn" onclick="swapWinrates(6, 2);return false;"></button>
+				</div>
+				-->
+			</div>
+			<div id="summoner7-champion-data">
+			</div>
+
+			<div id="summoner8-champion-data">
+			</div>
+			
+			<div id="summoner9-champion-data">
+			</div>
+
+			<div id="summoner10-champion-data">
+			</div>
+
+			<!-- <button class="switch-view-btn" onclick="switchView('summoners', 'enemyteam');return false;">Summoners</button> -->
+
+			<div id="champion-data-infobox" data-balloon="" data-balloon-pos="up-right" data-balloon-break data-balloon-blunt>
+				<div class="elo-select-style">
+					<select id="elo-select" onchange="changeELO(this)">
+						<option value="PLATINUM+">PLATINUM+</option>
+						<option value="GOLD">GOLD</option>
+						<option value="SILVER">SILVER</option>
+						<option value="BRONZE">BRONZE</option>
+					</select>
+				</div>
+			</div>
+
+		</div> <!-- </div id="champions-enemyteam"> -->
+
+		<div id="leaguewindow-focus" style="display: none;">Focus league window to continue detection</div>
+
+		<!--
+		<label id="ads-toggle"><input type="checkbox" id="ads-toggle-box" onchange="toggleAds(2)"> Disable ad</label>
+		<div id="ad-space"><img src="../../themes/_common-img/ad-placeholder.png"></div>
+		-->
+
+		<!-- will only show when there's a new release -->
+		<div id="updates" style="display: none;">
+			<span class="updates-status" id="updates-status"></span>
+			<span class="updates-content" id="updates-content"></span>
+		</div>
+	</div> <!-- </div id="content"> -->
+
+	<footer>
+		<div id="footer-right">
+			<a href="https://www.lolq.org/" title="LoLQ.org website">lolq.org</a> / <a href="https://www.lolq.org/#donate" title="Donate">donate</a>
+		</div>
+		<div id="app-version">
+			<div id="app-version-inner"></div>
+		</div>
+	</footer>
+
+	<!-- Fix issue with Electron and 3rd party libraries like jQuery -->
+	<!-- https://stackoverflow.com/questions/32621988/electron-jquery-is-not-defined -->
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+	<script src="../js/jquery-3.3.1.min.js"></script>
+	<script src="../js/default.js"></script>
+	<script src="../js/tool-window-common.js"></script>
+	<script src="../js/tool-window-2.js"></script>
+	<script src="../js/championData-renderer.js"></script>
+
+	<script>if (window.module) module = window.module;</script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,40 @@
+/*
+ *
+ *   ___       ________  ___       ________
+ *  |\  \     |\   __  \|\  \     |\   __  \
+ *  \ \  \    \ \  \|\  \ \  \    \ \  \|\  \
+ *   \ \  \    \ \  \\\  \ \  \    \ \  \\\  \
+ *    \ \  \____\ \  \\\  \ \  \____\ \  \\\  \
+ *     \ \_______\ \_______\ \_______\ \_____  \
+ *      \|_______|\|_______|\|_______|\|___| \__\
+ *                                          \|__|
+ *
+ *      (c) 2018 Riku Nurminen
+ *
+ *      https://www.lolq.org
+ *
+ */
+
+
+@import url("theme_common.css");
+@import url("tool-window-common.css");
+@import url("summonerData.css");
+@import url("championData.css");
+
+/* NOTE: Your theme must have this file with the above @imports even if it's empty */
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * 'Enemy team' window styling for LoLQv1 theme
+ *
+ * ===============================================================
+ * =============================================================== */
+
+/* Use static image as title bar text to avoid having to ship font files */
+header h1 {
+    background: url("img/title-bg-tool-window-2.png") top left no-repeat;
+    width: 101px;
+    height: 17px;
+}

@@ -1,0 +1,134 @@
+/*
+ *
+ *   ___       ________  ___       ________
+ *  |\  \     |\   __  \|\  \     |\   __  \
+ *  \ \  \    \ \  \|\  \ \  \    \ \  \|\  \
+ *   \ \  \    \ \  \\\  \ \  \    \ \  \\\  \
+ *    \ \  \____\ \  \\\  \ \  \____\ \  \\\  \
+ *     \ \_______\ \_______\ \_______\ \_____  \
+ *      \|_______|\|_______|\|_______|\|___| \__\
+ *                                          \|__|
+ *
+ *      (c) 2018 Riku Nurminen
+ *
+ *      https://www.lolq.org
+ *
+ */
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * Champion data styling for LoLQv1 theme
+ *
+ * ===============================================================
+ * =============================================================== */
+
+#summoner1-champion-data,
+#summoner2-champion-data,
+#summoner3-champion-data,
+#summoner4-champion-data,
+#summoner5-champion-data,
+#summoner6-champion-data,
+#summoner7-champion-data,
+#summoner8-champion-data,
+#summoner9-champion-data,
+#summoner10-champion-data {
+	/* Use box-shadow instead of border so it won't affect positioning */
+	box-shadow: inset 0 -1px 0 #2e364a; /* bottom */
+	background: url("img/lolqv1-summonerbox-bg.png") top left no-repeat;
+}
+
+#summoner2-champion-data,
+#summoner4-champion-data,
+#summoner7-champion-data,
+#summoner9-champion-data {
+	background: url("img/lolqv1-summonerbox-bg2.png") top left no-repeat;
+	
+}
+
+
+.champion {
+	font-size: 11px;
+	color: #fff;
+	letter-spacing: -1px;
+}
+
+
+.c-roles {
+	color: #9c9fb0;
+}
+
+a.c-role-selected:link,
+a.c-role-selected:visited,
+a.c-role-selected:active {
+	font-size: 14px;
+	color: #fff;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a.c-role-not-selected {
+	font-size: 11px;
+}
+
+
+.c-damage-composition .physicalDamage {
+	background-color: #ff5353;
+}
+
+.c-damage-composition .magicDamage {
+	background-color: #65e4f5;
+}
+
+.c-damage-composition .trueDamage {
+	background-color: #6b6b6b;
+}
+
+
+.c-role-placement {
+	font-size: 18px;
+}
+
+.c-role-positions {
+	font-size: 12px;
+}
+
+.c-role-placement-delta {
+	font-size: 11px;
+}
+
+
+.c-best-winrate-vs-txt,
+.c-worst-winrate-vs-txt {
+	font-size: 11px;
+	line-height: 11px;
+}
+
+.c-best-winrate-vs-txt {
+	color: #0cff00;
+}
+
+.c-worst-winrate-vs-txt {
+	color: #ff4141;
+}
+
+
+.c-winrates-notenough-data {
+	font-size: 13px !important;
+}
+
+
+.c-winrates-swap-btn {
+	border: none;
+	outline: none;
+	background: url("../_common-img/winrates-swap-updownarrow.png") top left no-repeat;
+}
+
+.c-winrates-swap-btn:hover {
+	background: url("../_common-img/winrates-swap-updownarrow-hover.png") top left no-repeat;
+}
+
+.c-winrates-swap-btn:active {
+	background: url("../_common-img/winrates-swap-updownarrow-hover.png") 1px 1px no-repeat;
+}

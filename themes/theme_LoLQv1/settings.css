@@ -1,0 +1,202 @@
+/*
+ *
+ *   ___       ________  ___       ________
+ *  |\  \     |\   __  \|\  \     |\   __  \
+ *  \ \  \    \ \  \|\  \ \  \    \ \  \|\  \
+ *   \ \  \    \ \  \\\  \ \  \    \ \  \\\  \
+ *    \ \  \____\ \  \\\  \ \  \____\ \  \\\  \
+ *     \ \_______\ \_______\ \_______\ \_____  \
+ *      \|_______|\|_______|\|_______|\|___| \__\
+ *                                          \|__|
+ *
+ *      (c) 2018 Riku Nurminen
+ *
+ *      https://www.lolq.org
+ *
+ */
+
+
+@import url("theme_common.css");
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * Settings window styling for LoLQv1 theme
+ * 
+ * ===============================================================
+ * =============================================================== */
+
+/* Use static image as title bar text to avoid having to ship font files */
+header h1 {
+    background: url("img/title-bg-settings.png") top left no-repeat;
+    width: 67px;
+    height: 17px;
+}
+
+
+.separator {
+	border-right: 1px dashed gray;
+}
+
+
+.setting {
+	font-size: 13px;
+}
+
+
+#updates a:link, #updates a:visited, #updates a:active {
+	color: #9c9fb0;
+	text-decoration: underline;
+}
+
+#updates a:hover {
+	color: #e56325;
+}
+
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * League settings
+ *
+ * ===============================================================
+ * =============================================================== */
+
+.league-text {
+	font-family: OpenSans;
+	font-size: 22px !important;
+	font-weight: normal;
+}
+
+.region-text {
+	font-family: OpenSans;
+	font-size: 20px !important;
+	font-weight: normal;
+}
+
+.region-explanation {
+	font-size: 12px;
+}
+
+
+.select-style {
+	border: 1px solid #e56325;
+	border-radius: 3px;
+	background-color: #000;
+}
+
+.select-style select {
+	border: none;
+    box-shadow: none;
+	color: #fff;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.select-style select option {
+	background-color: #000;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
+
+.region-required-triangle {
+	top: 4px; /* Fine tune positioning for this theme */
+	background: url("../_common-img/settings-warning-triangle.png") top left no-repeat;
+}
+
+
+.key-txt {
+	color: #fff;
+	font-size: 15px !important;
+}
+
+.key-txt2 {
+	font-size: 12px !important;
+}
+
+.key-txt3 {
+	font-size: 12px !important;
+}
+
+.key-input {
+	background-color: #000;
+	border: 1px solid #e56325;
+	font-size: 11px !important;
+	border-radius: 3px;
+	outline: none;
+	color: #fff;
+}
+
+.key-required-triangle {
+	top: 27px; /* Fine tune positioning for this theme */
+	background: url("../_common-img/settings-warning-triangle.png") top left no-repeat;
+}
+
+.key-checking-key {
+	background: url("../_common-img/loading-spinner.gif") top left no-repeat;
+}
+
+.key-success-icon {
+	background: url("../_common-img/check-icon-green.png") top left no-repeat;
+}
+
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * App settings
+ *
+ * ===============================================================
+ * =============================================================== */
+
+.app-text {
+	font-family: OpenSans;
+	font-size: 22px !important;
+	font-weight: normal;
+}
+
+
+.ongamelaunch-select {
+	font-size: 12px;
+}
+
+
+.theme-select {
+	font-size: 12px;
+}
+
+.theme-info-txt {
+	font-size: 12px;
+}
+
+
+.updates-status {
+	color: #fff;
+}
+
+
+.reset-window-positions {
+	font-size: 11px;
+}
+
+
+#settings-done-btn {
+	border: 1px solid #e56325;
+	border-radius: 3px;
+	background-color: #000;
+	outline: none;
+	color: #fff;
+	font-size: 18px;
+}
+
+#settings-done-btn:hover {
+	color: #000;
+	background: #fff;
+}

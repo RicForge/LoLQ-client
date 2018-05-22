@@ -1,0 +1,161 @@
+/*
+ *
+ *   ___       ________  ___       ________
+ *  |\  \     |\   __  \|\  \     |\   __  \
+ *  \ \  \    \ \  \|\  \ \  \    \ \  \|\  \
+ *   \ \  \    \ \  \\\  \ \  \    \ \  \\\  \
+ *    \ \  \____\ \  \\\  \ \  \____\ \  \\\  \
+ *     \ \_______\ \_______\ \_______\ \_____  \
+ *      \|_______|\|_______|\|_______|\|___| \__\
+ *                                          \|__|
+ *
+ *      (c) 2018 Riku Nurminen
+ *
+ *      https://www.lolq.org
+ *
+ */
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * Summoner data styling for Default theme
+ *
+ * ===============================================================
+ * =============================================================== */
+
+#summoner2,
+#summoner4,
+#summoner7,
+#summoner9 {
+	background-color: #262626;
+
+	/* Use box-shadow instead of border so it won't affect positioning */
+	box-shadow:
+		inset -1px 0 0 #3a3a3a, /* right */
+		inset 1px 0 0 #3a3a3a; /* left */
+}
+
+
+.summoner {
+	font-size: 11px;
+	color: #fff;
+	letter-spacing: -1px;
+}
+
+
+.s-summoner-info {
+	color: #9c9fb0;
+	font-size: 12px;
+}
+
+.s-summoner-info .s-rank {
+	color: #fff;
+}
+
+.s-summoner-info .s-seasonal-winrate {
+	font-weight: bold;
+	color: #fff;
+}
+
+
+.s-last-games {
+	line-height: 12px;
+	letter-spacing: 0px;
+	text-align: right;
+}
+
+.s-last-games .s-win {
+	color: #0cff00;
+}
+
+.s-last-games .s-loss {
+	color: #ff4141;
+}
+
+
+.s-last-ten-winrate {
+	font-size: 11px;
+}
+
+
+.s-main-champs-txt {
+	font-size: 12px;
+}
+
+
+.s-main-roles-txt {
+	font-size: 12px;
+	letter-spacing: -1px;
+	text-transform: uppercase;
+}
+
+.s-main-roles-txt strong {
+	font-size: 14px;
+}
+
+
+.s-winstreak {
+	background: url("../_common-img/winstreak-bg.png") top left no-repeat;
+}
+
+.s-loss-streak {
+	background: url("../_common-img/loss-streak-bg.png") top left no-repeat;
+}
+
+
+.s-streak strong {
+	font-size: 13px;
+	text-shadow: 1px 1px 2px #000;
+}
+
+.s-streak-txt {
+	font-size: 9px;
+	letter-spacing: 0px;
+}
+
+
+.s-series-txt {
+	letter-spacing: 0px;
+}
+
+
+/*
+ * Input summoner name box
+ */
+.s-override-summonername-txt {
+	color: #fff;
+}
+
+.s-override-summonername-inputbox {
+	border: 0;
+	outline: 0;
+	background-color: #383838;
+	font-size: 12px !important;
+	outline: none;
+	color: #fff;
+}
+
+.s-override-tip-txt {
+	font-size: 11px;
+}
+
+
+/*
+ * Remove summoner
+ */
+.s-remove-summoner {
+	line-height: 4px;
+	font-weight: bold;
+	font-size: 9px;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	color: #9c9fb0;
+}
+
+.s-remove-summoner:hover,
+.s-remove-summoner:active {
+	background-color: #fff;
+	color: #000;
+}

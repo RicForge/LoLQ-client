@@ -1,0 +1,237 @@
+/*
+ *
+ *   ___       ________  ___       ________
+ *  |\  \     |\   __  \|\  \     |\   __  \
+ *  \ \  \    \ \  \|\  \ \  \    \ \  \|\  \
+ *   \ \  \    \ \  \\\  \ \  \    \ \  \\\  \
+ *    \ \  \____\ \  \\\  \ \  \____\ \  \\\  \
+ *     \ \_______\ \_______\ \_______\ \_____  \
+ *      \|_______|\|_______|\|_______|\|___| \__\ 
+ *                                          \|__|
+ *
+ *   Copyright (C) 2018  Ric <ric@lolq.org>
+ *
+ *   https://www.lolq.org
+ *
+ *   This program is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ */
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * About window layout CSS
+ *
+ * ===============================================================
+ * =============================================================== */
+
+#content {
+	-webkit-app-region: no-drag;
+	overflow-y: scroll;
+}
+
+
+.about {
+	position: absolute;
+}
+
+
+.section-title {
+	top: 0px;
+	left: 65px;
+	height: 26px;
+}
+
+
+#lolq-info {
+	position: relative;
+	top: 0px;
+}
+
+#lolq-info .logo-full {
+	top: 30px;
+	left: 140px;
+	width: 300px;
+	height: 94px;
+}
+
+
+#lolq-info .by-ric-txt {
+	top: 100px;
+	right: 140px;
+}
+
+#lolq-info .lolq-version {
+	top: 131px;
+	left: 210px;
+}
+
+#lolq-info .changelog {
+	top: 132px;
+	left: 330px;
+}
+
+
+#thanksto-section {
+	top: 210px;
+	position: relative;
+}
+
+#thanksto-section .thanksto-txt {
+	width: 372px;
+	padding-left: 130px;
+}
+
+#thanksto-section .thanksto-rox {
+	top: 130px;
+	left: 298px;
+}
+
+#thanksto-section .thanksto-rox-info {
+	top: 157px;
+	left: 160px;
+}
+
+
+#thanksto-section .thanksto-rox-quote {
+	top: 177px;
+	left: 160px;
+}
+
+#thanksto-section .thanksto-rox-link {
+	top: 214px;
+	left: 260px;
+}
+
+#thanksto-section .thanksto-kne {
+	top: 40px;
+	left: 298px;
+	font-family: FrizQuadrata;
+	font-size: 20px !important;
+	font-weight: normal;
+	color: #fff;
+}
+
+#thanksto-section .thanksto-kne-info {
+	top: 67px;
+	left: 185px;
+}
+
+#thanksto-section .thanksto-kne-link {
+	top: 86px;
+	left: 260px;
+}
+
+
+#thanksto-section .thanksto-also {
+	top: 260px;
+	left: 160px;
+}
+
+
+
+#powered-by {
+	top: 530px;
+	position: relative;
+}
+
+
+#powered-by .powered-by-txt {
+	width: 384px;
+	padding-left: 118px;
+}
+
+#powered-by .powered-by-electron {
+	top: 70px;
+	left: 92px;
+	width: 450px;
+	height: 89px;
+}
+
+#powered-by .powered-by-electron-info {
+	top: 160px;
+	left: 205px;
+}
+
+
+#powered-by .powered-by-nodejs {
+	top: 220px;
+	left: 40px;
+	width: 150px;
+	height: 42px;
+}
+
+#powered-by .powered-by-nodejs-info {
+	top: 265px;
+	left: 41px;
+}
+
+
+#powered-by .powered-by-tesseract {
+	top: 220px;
+	left: 265px;
+	width: 100px;
+	height: 52px;
+}
+
+#powered-by .powered-by-tesseract-info {
+	top: 275px;
+	left: 245px;
+}
+
+
+#powered-by .powered-by-chromium {
+	top: 230px;
+	right: 40px;
+	width: 150px;
+	height: 30px;
+}
+
+#powered-by .powered-by-chromium-info {
+	top: 264px;
+	right: 38px;
+}
+
+
+#powered-by .powered-by-amazonaws {
+	top: 330px;
+	left: 200px;
+	width: 200px;
+	height: 75px;
+}
+
+#powered-by .powered-by-amazonaws-info {
+	top: 410px;
+	left: 240px;
+}
+
+
+#disclaimer {
+	top: 1010px;
+	position: relative;
+}
+
+
+#disclaimer .disclaimer-txt {
+	width: 384px;
+	padding-left: 118px;
+}
+
+#disclaimer .disclaimer-notice {
+	top: 40px;
+	left: 60px;
+	width: 515px;
+	margin-bottom: 30px;
+}

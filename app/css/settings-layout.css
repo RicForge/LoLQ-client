@@ -1,0 +1,299 @@
+/*
+ *
+ *   ___       ________  ___       ________
+ *  |\  \     |\   __  \|\  \     |\   __  \
+ *  \ \  \    \ \  \|\  \ \  \    \ \  \|\  \
+ *   \ \  \    \ \  \\\  \ \  \    \ \  \\\  \
+ *    \ \  \____\ \  \\\  \ \  \____\ \  \\\  \
+ *     \ \_______\ \_______\ \_______\ \_____  \
+ *      \|_______|\|_______|\|_______|\|___| \__\ 
+ *                                          \|__|
+ *
+ *   Copyright (C) 2018  Ric <ric@lolq.org>
+ *
+ *   https://www.lolq.org
+ *
+ *   This program is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ */
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * Settings window layout CSS
+ *
+ * ===============================================================
+ * =============================================================== */
+
+.separator {
+	position: absolute;
+	top: 10px;
+	bottom: 10px;
+	left: 330px;
+	width: 1px;
+}
+
+
+.setting {
+	position: absolute;
+}
+
+
+.checkbox {
+	display: block;
+	padding-left: 15px;
+	text-indent: -15px;
+}
+
+.checkbox input {
+	width: 13px;
+	height: 13px;
+	padding: 0;
+	margin:0;
+	vertical-align: bottom;
+	position: relative;
+	top: -2px;
+}
+
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * League settings
+ *
+ * ===============================================================
+ * =============================================================== */
+
+#league-settings-container {
+	position: absolute;
+	top: 20px;
+	left: 25px;
+	height: 60px;
+	width: 295px;
+}
+
+.league-text {
+	top: 0px;
+	left: 0px;
+}
+
+.region-text {
+	top: 40px;
+	left: 0px;
+}
+
+.region-explanation {
+	top: 70px;
+	left: 80px;
+}
+
+
+.select-style {
+	position: absolute;
+	-webkit-app-region: no-drag;
+	overflow: hidden;
+}
+
+.select-style select {
+    padding: 5px 8px 4px 8px;
+	width: 120%;
+}
+
+
+.region-select {
+	top: 42px;
+	left: 80px;
+	width: 170px;
+}
+
+
+.region-required-triangle {
+	top: 46px;
+	left: 257px;
+	height: 20px;
+	width: 22px;
+}
+
+
+#access-token {
+	position: absolute;
+	bottom: 0px;
+	left: 25px;
+	height: 80px;
+	width: 295px;
+}
+
+#developer-mode {
+	position: absolute;
+	bottom: 0px;
+	left: 25px;
+	height: 100px;
+	width: 295px;
+}
+
+.key-txt {
+	top: 0px;
+	left: 0px;
+}
+
+.key-input {
+	top: 25px;
+	left: 0px;
+	-webkit-app-region: no-drag;
+	width: 262px;
+	height: 20px;
+}
+
+.key-required-triangle {
+	top: 26px;
+	left: 269px;
+	height: 20px;
+	width: 22px;
+}
+
+.key-checking-key {
+	top: 26px;
+	left: 269px;
+	height: 22px;
+	width: 22px;
+}
+
+.key-success-icon {
+	top: 26px;
+	left: 269px;
+	height: 22px;
+	width: 22px;
+}
+
+.key-txt2 {
+	top: 50px;
+	left: 0px;
+}
+
+.key-txt3 {
+	top: 67px;
+	left: 0px;
+}
+
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * App settings
+ *
+ * ===============================================================
+ * =============================================================== */
+
+#app-settings-container {
+	position: absolute;
+	top: 20px;
+	right: 15px;
+	height: 200px;
+	width: 235px;
+}
+
+.app-text {
+	top: 0px;
+	left: 0px;
+}
+
+
+.launch-windows-start {
+	top: 40px;
+	left: 0px;
+}
+
+
+.hide-to-tray {
+	top: 60px;
+	left: 0px;
+	-webkit-app-region: no-drag;
+}
+
+
+.ongamelaunch-text {
+	top: 92px;
+	left: 0px;
+	-webkit-app-region: no-drag;
+}
+
+.ongamelaunch-select {
+	top: 90px;
+	left: 129px;
+	width: 100px;
+}
+
+
+.theme-text {
+	top: 132px;
+	left: 0px;
+}
+
+.theme-select {
+	top: 130px;
+	left: 50px;
+	width: 100px;
+}
+
+.theme-info-txt {
+	top: 154px;
+	left: 50px;
+}
+
+
+#updates {
+	position: absolute;
+	bottom: 50px;
+	right: 15px;
+	height: 100px;
+	width: 235px;
+}
+.updates-txt {
+	top: 0px;
+	left: 0px;
+}
+
+.updates-status {
+	top: 20px;
+	left: 0px;
+}
+
+.updates-content {
+	top: 40px;
+	left: 0px;
+}
+
+
+.reset-window-positions {
+	bottom: 20px;
+	right: 180px;
+}
+
+
+#settings-done-btn {
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	-webkit-app-region: no-drag;
+	padding: 7px 20px;
+}
+
+
+#settings-done-btn:active {
+	bottom: 19px;
+	right: 19px;
+}

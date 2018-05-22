@@ -1,0 +1,169 @@
+/*
+ *
+ *   ___       ________  ___       ________
+ *  |\  \     |\   __  \|\  \     |\   __  \
+ *  \ \  \    \ \  \|\  \ \  \    \ \  \|\  \
+ *   \ \  \    \ \  \\\  \ \  \    \ \  \\\  \
+ *    \ \  \____\ \  \\\  \ \  \____\ \  \\\  \
+ *     \ \_______\ \_______\ \_______\ \_____  \
+ *      \|_______|\|_______|\|_______|\|___| \__\
+ *                                          \|__|
+ *
+ *      (c) 2018 Riku Nurminen
+ *
+ *      https://www.lolq.org
+ *
+ */
+
+
+@import url("theme_common.css");
+ 
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * About window styling for Default theme
+ *
+ * ===============================================================
+ * =============================================================== */
+
+/* Use static image as title bar text to avoid having to ship font files */
+header h1 {
+    background: url("img/title-bg-about.png") top left no-repeat;
+    width: 49px;
+    height: 13px;
+}
+
+
+#content .section-title {
+	background: url("../_common-img/about-window-heading-bg-white.png") bottom left no-repeat;
+	font-size: 20px !important;
+	color: #fff;
+	font-weight: bold;
+	letter-spacing: 15px;
+	text-transform: uppercase;
+}
+
+
+#lolq-info .logo-full {
+	background: url("../_common-img/lolq-logo-full-white.png") top left no-repeat;
+}
+
+
+#lolq-info .by-ric-txt {
+	font-size: 15px !important;
+}
+
+#lolq-info .lolq-version {
+	font-family: OpenSans;
+	font-size: 15px !important;
+	font-weight: normal;
+	color: #fff;
+}
+
+#lolq-info .changelog {
+	font-size: 14px !important;
+}
+
+
+#thanksto-section .thanksto-rox {
+	font-family: OpenSans;
+	font-size: 20px !important;
+	font-weight: normal;
+	color: #fff;
+}
+
+#thanksto-section .thanksto-rox-quote {
+	font-style: italic;
+}
+
+#thanksto-section .thanksto-kne {
+	font-family: OpenSans;
+	font-size: 20px !important;
+	font-weight: normal;
+	color: #fff;
+}
+
+#thanksto-section .thanksto-also {
+	font-size: 15px;
+}
+
+#thanksto-section .thanksto-also strong {
+	color: #fff;
+}
+
+
+
+#powered-by .powered-by-electron {
+	background: url("../_common-img/electron-logo.png") top left no-repeat;
+}
+
+#powered-by .powered-by-electron-info {
+	color: #fff;
+	font-size: 18px;
+}
+
+
+#powered-by .powered-by-nodejs {
+	background: url("../_common-img/nodejs-logo-white.png") top left no-repeat;
+}
+
+#powered-by .powered-by-nodejs-info {
+	color: #fff;
+	font-size: 13px;
+}
+
+
+#powered-by .powered-by-tesseract {
+	background: url("../_common-img/tesseract-logo.png") top left no-repeat;
+}
+
+#powered-by .powered-by-tesseract-info {
+	color: #fff;
+	font-size: 13px;
+}
+
+
+#powered-by .powered-by-chromium {
+	background: url("../_common-img/chromium-logo-white.png") top left no-repeat;
+}
+
+#powered-by .powered-by-chromium-info {
+	color: #fff;
+	font-size: 13px;
+}
+
+
+#powered-by .powered-by-amazonaws {
+	background: url("../_common-img/aws-logo-white.png") top left no-repeat;
+}
+
+#powered-by .powered-by-amazonaws-info {
+	color: #fff;
+	font-size: 15px;
+}
+
+#disclaimer .disclaimer-notice {
+	font-size: 13px;
+	text-align: center;
+}
+
+
+/* Style the scrollbar */
+::-webkit-scrollbar {
+	z-index: 1;
+	width: 12px;
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	z-index: 1;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	z-index: 1;
+	background-color: #F5F5F5;
+}

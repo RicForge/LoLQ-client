@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+
+	<title>What's New - LoLQ</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	
+	<style>
+	body {
+		background-color: #3a3a3a;
+		margin: 17px 0;
+		color: #fff;
+	    font: normal 16px/1.4 "Open Sans", Arial, Helvetica, sans-serif;
+	    text-rendering: optimizeLegibility;
+	}
+
+	a:link, a:visited, a:active {
+		color: #9c9fb0;
+		text-decoration: underline;
+	}
+
+	a:hover {
+		text-decoration: none;
+	}
+
+
+	p {
+	    margin-bottom: 1.4em;
+	}
+
+	#content {
+		width: 760px;
+		background-color: #1f1f1f;
+		padding: 20px;
+		margin: 0 auto;
+	}
+
+	h1 {
+		margin-top: 10px;
+		padding-top: 0px;
+		padding-bottom: 5px;
+		line-height: 1em;
+		border-bottom: 1px solid white;
+	}
+
+	dt, dd {
+		color: #9c9fb0;
+	}
+
+	.smaller { font-size: 14px; }
+	</style>
+</head>
+
+<body>
+
+	<div id="content">
+		<h1>What's New - LoLQ</h1>
+
+		<h2>0.9.0</h2>
+		<p>May 22, 2018</p>
+		<strong>OPEN BETA</strong>
+		<dl>
+			<dt>- API calls now routed via LoLQ server; register for access token at https://www.lolq.org/get-access-token/</dt>
+			<dt>- Added "Reset window positions" button to the settings window</dt>
+			<dt>- Added a check to see if DWM composition (Aero Glass) is enabled in Windows</dt>
+			<dd>- If not -> themes that use transparency will be disabled. A theme must specify whether it uses transparency or not in its theme_common.css (see Default and LoLQv1 themes for examples)</dd>
+			<dt>- Added "Queue history" feature</dt>
+			<dt>- Added "When match begins" settings option</dt>
+			<dt>- Added "Hide to tray until champ select" settings option</dt>
+			<dt>- Reworked the UI CSS so it's easier to write new themes</dt>
+			<dd>- Also Default theme no longer uses transparency</dd>
+			<dt>- Reworked app minimize / focus / clicking on tray icon behaviors</dt>
+			<dd>- "Waiting for League" splash screen will now only show if you click on tray icon when League client isn't running</dd>
+			<dt>- Added small delay to summoner name detection to prevent misdetects</dt>
+			<dt>- Added notification when new version is available for download</dt>
+			<dt>- Added "Remove Summoner" button incase there's a misdetection / typo and there's also a summoner by that name</dt>
+			<dt>- App will now remember desktop positions of My team / Enemy team windows</dt>
+			<dt>- Tray notifications look more stylish now</dt>
+			<dt>- Fixed a bug where accounts that have been transfered between servers would show incorrect summoner stats</dt>
+			<dt>- Fixed a bug where last10 stats would not get fetched for the other summoners if one summoner had no match history</dt>
+			<dt>- Fixed a bug where the app windows would stay hidden if League window was minimized when LoLQ starts</dt>
+			<dt>- Fixed a bug where debug files would not get generated if League window wasn't focused</dt>
+			<dt><span class="smaller">- (internal) More improvements to summoner name detection logic (won't get stuck now if one returns an empty string for whatever reason)</span></dt>
+			<dt><span class="smaller">- (internal) Fixed a bug where a javascript error would sometimes occur when exiting the app and a tray notification was open</span></dt>
+			<dt><span class="smaller">- (internal) Champ pick autodetect now checks champions in order of MAIN ROLE->PLAY RATE (highest to lowest), based on the latest champion.GG data</span></dt>
+			<dt><span class="smaller">- (internal) Fixed a bug where a JavaScript error would trigger after a queue dodge</span></dt>
+			<dt><span class="smaller">- (internal) Fixed a bug with clipboard checking of "x joined the lobby"</span></dt>
+		</dl>
+
+		<h2>0.8.9</h2>
+		<p>April 4, 2018</p>
+		<dl>
+			<dt>- Fixed a bug in About -window where Kne's name wasn't first in the names being thanked (thanks Kne for finding this bug)</dt>
+			<dt>- Major rewrite to champ pick autodetection</dt>
+				<dd>- Switched from OCR text reading to just comparing champ icon images</dd>
+				<dd>- Faster, more accurate (100%) and consumes less CPU power</dd>
+			<dt>- Improvements to summoner name clipboard copy/manual input logic and made sure there's always a backup option working if autodetection fails</dt>
+			<dt>- Added "copy debug log + screenshot" button to the app in champ select screen</dt>
+		</dl>
+
+		<h2>0.8.5</h2>
+		<p>March 29, 2018</p>
+		<dl>
+			<dt>- Changed it so the app windows move freely on the deskop (instead of snapping to client)</dt></dt->
+			<dt>- Further improved summoner name autodetection (still needs work)</dt>
+			<dt>- Added file logging and improved the overall logging output</dt>
+				<dd>- Logfile can be found at %APPDATA%\LoLQ-userdata\lolq-log.txt</dd>
+				<dd>- Logfile will be overridden on each app startup</dd>
+				<dd>- Starting LoLQ.exe from the windows command line will now produce verbose, colored logs to the console</dd>
+			<dt>- Added some mouseover tooltips to the summoner info box</dt>
+			<dt><span class="smaller">- (internal) Major rewrite to screen reading &amp; OCR logic. Should take less CPU power and work more consistently.</span></dt>
+			<dt><span class="smaller">- (internal) Major rewrite to how the summoner data is requested from Riot API (to protect against rate limits while still trying to keep the app responsive).</span></dt>
+		</dl>
+
+		<h2>0.8.1</h2>
+		<p>March 27, 2018</p>
+		<dl>
+			<dt>- Fixed a bug with ChangeLog display on new version startup</dt>
+		</dl>
+
+		<h2>0.8.0</h2>
+		<p>March 26, 2018</p>
+		<dl>
+			<dt>- Reworked summoner name detection:</dt>
+				<dd>- Improved detection accuracy</dd>
+				<dd>- You can now copy the summoner names (... joined the lobby) from the chat lobby to the clipboard to help the detection engine out.</dd>
+				<dd>- Added an option to manually input summoner name.</dd>
+			<dt>- Updated to work with League patch 8.6</dt>
+			<dt><span class="smaller">- (internal) Updated Tesseract-OCR from 3.05.01 to 4.0.0alpha</span></dt>
+		</dl>
+
+		<h2>0.7.1</h2>
+		<p>March 22, 2018</p>
+		<dl>
+			<dt>- This ChangeLog window will now be shown once upon first run of every new version of the app (also available at <a href="https://www.lolq.org/ChangeLog.html" title="ChangeLog">https://www.lolq.org/ChangeLog.html</a>)</dt>
+		</dl>
+
+		<h2>0.7.0</h2>
+		<p>March 21, 2018</p>
+		<dl>
+			<dt>- Added &quot;About&quot; window</dt>
+			<dt>- Added Themes support with 2 initial themes:</dt>
+				<dd>- Default</dd>
+				<dd>- LoLQv1</dd>
+			<dt>- Added ads placeholders + "Disable ads" button</dt>
+			<dt>- Modified layout of champion.GG infos &amp; ELO selectbox underneath champion stats</dt>
+			<dt>- App now minimizes/maximizes with League window, pressing minimize will minimize it to tray until user clicks tray icon again. The first time the user does this a notification will be shown.</dt>
+			<dt>- Added "Start with windows" option</dt>
+			<dt><span class="smaller">- (internal) Rewrote the app exit procedure so it doesn't produce errors in the console and/or leave a process hanging</span></dt>
+			<dt><span class="smaller">- (internal) Rewrote the event loop so that all window managing operations are processed much faster</span></dt>
+			<dt><span class="smaller">- (internal) Preparations for Riot API proxy at LoLQ server</span></dt>
+		</dl>
+
+		<h2>0.1.1</h2>
+		<p>March 14, 2018</p>
+		<dl>
+			<dt>- Entering developer Riot API key no longer requires the user to press enter</dt>
+			<dt>- Added "Focus League client to continue detection" alert</dt>
+			<dt><span class="smaller">- (internal) Moved temp and userdata files to %TMP% and %APPDATA%</span></dt>
+			<dt><span class="smaller">- (internal) Fixed a bug with champion dataset downloads</span></dt>
+		</dl>
+
+		<h2>0.1.0</h2>
+		<p>March 14, 2018</p>
+		<dl>
+			<dt>First release (development started Feb 2)</dt>
+		</dl>
+	</div>
+
+</body>
+
+</html>
+

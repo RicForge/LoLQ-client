@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Settings - LoLQ</title>
+
+	<link rel="stylesheet" href="../css/normalize.css">
+	<link rel="stylesheet" href="../css/balloon.css">
+
+	<link rel="stylesheet" href="../css/fonts.css">
+	<link rel="stylesheet" href="../css/common-layout.css">
+	<link rel="stylesheet" href="../css/settings-layout.css">
+</head>
+
+<body>
+
+	<header>
+		<div id="title">
+			<h1>Settings</h1>
+		</div>
+
+		<div id="title-bar-btns">
+			<div id="title-bar-btns-inner">
+				<button id="about-btn">?</button>
+				<button id="close-btn-settings">x</button>
+			</div>
+		</div>
+	</header>
+
+	<div id="content">
+		<div id="league-settings-container">
+			<span class="setting league-text">League</span>
+			<span class="setting region-text">Region:</span>
+			<div class="select-style region-select">
+				<select id="region-select" onchange="changeRegion(this)">
+					<option value="none" disabled>Select your region</option>
+					<option value="BR">Brazil (BR)</option>
+					<option value="EUNE">EU Nordic &amp; East (EUNE)</option>
+					<option value="EUW">EU West (EUW)</option>
+					<option value="JP">Japan (JP)</option>
+					<option value="KR">Korea (KR)</option>
+					<option value="LAN">Latin America North (LAN)</option>
+					<option value="LAS">Latin America South (LAS)</option>
+					<option value="NA">North America (NA)</option>
+					<option value="OCE">Oceania (OCE)</option>
+					<option value="TR">Turkey (TR)</option>
+					<option value="RU">Russia (RU)</option>
+				</select>
+			</div>
+			<span class="setting region-explanation">(for summoner info lookups)</span>
+			<span id="region-required" class="setting region-required-triangle"></span>
+		</div>
+
+		<div id="access-token" style="display: none;">
+			<span class="setting key-txt">LoLQ access token:</span>
+			<input class="setting key-input" id="lolq-access-token" type="text" oninput="inputLoLQAccessToken(event); return false;">
+			<span class="setting key-txt2" id="access-token-status">Get it at <a href="https://www.lolq.org/get-access-token/">https://www.lolq.org/get-access-token/</a></span>
+			<span id="accesstoken-required" class="setting key-required-triangle" style="display: none;"></span>
+			<span id="accesstoken-checking" class="setting key-checking-key" style="display: none;"></span>
+			<span id="accesstoken-success" class="setting key-success-icon" style="display: none;"></span>
+		</div>
+
+		<!-- DEVELOPER MODE -->
+		<div id="developer-mode" style="display: none;">
+			<span class="setting key-txt">DEVELOPER MODE, enter Riot API key</span>
+			<input class="setting key-input" id="riot-api-key" type="text" oninput="inputRiotAPIKey(event); return false;">
+			<span class="setting key-txt2">(Get it at <a href="https://developer.riotgames.com/">https://developer.riotgames.com/</a>)</span>
+			<span class="setting key-txt3">(New key might take up to 20 seconds to work)</span>
+			<span id="apikey-required" class="setting key-required-triangle"></span>
+			<span id="apikey-checking" class="setting key-checking-key" style="display: none;"></span>
+			<span id="apikey-success" class="setting key-success-icon" style="display: none;"></span>
+		</div>
+		<!-- // DEVELOPER MODE -->
+
+		<span class="separator"></span>
+
+		<div id="app-settings-container">
+			<span class="setting app-text">App</span>
+
+			<label class="setting checkbox launch-windows-start"><input type='checkbox' id="autolaunch-checkbox" onclick="toggleAutoLaunch()"> Launch when Windows starts</label>
+			<label class="setting checkbox hide-to-tray" data-balloon="LoLQ will pop up when you enter champ select. You can still bring it up manually by clicking on the tray icon." data-balloon-length="medium" data-balloon-pos="down-left" data-balloon-blunt><input type='checkbox' id="hidetotray-checkbox" onclick="toggleHideToTray()"> Hide to tray until champ select</label>
+
+			<span class="setting ongamelaunch-text" data-balloon="What to do after champ select when match begins" data-balloon-pos="up" data-balloon-blunt>When match begins:</span>
+			<div class="select-style ongamelaunch-select">
+				<select id="ongamelaunch-select" onchange="changeOnGameLaunch(this)">
+					<option value="minimize">Minimize to tray</option>
+					<option value="show">Show LoLQ</option>
+				</select>
+			</div>
+
+			<span class="setting theme-text">Theme:</span>
+			<div class="select-style theme-select">
+				<select id="theme-select" onchange="changeTheme(this)">
+				</select>
+			</div>
+			<span class="setting theme-info-txt" id="transparency-notice" style="display: none;">* DWM / Aero Glass must be enabled to use this theme (window transparency)</span>
+		</div>
+
+		<div id="updates" style="display: none;">
+			<span class="setting updates-txt">Updates:</span>
+			<span class="setting updates-status" id="updates-status"></span>
+			<span class="setting updates-content" id="updates-content"></span>
+		</div>
+
+		<a href="" id="reset-window-positions" class="setting reset-window-positions" data-balloon="Align app main windows next to League client" data-balloon-pos="up" data-balloon-blunt>Reset window<br>positions</a>
+
+		<button id="settings-done-btn">Done</button>
+	</div>
+
+	<footer>
+		<div id="footer-right">
+			<a href="https://www.lolq.org/" title="LoLQ.org website">lolq.org</a> / <a href="https://www.lolq.org/#donate" title="Donate">donate</a>
+		</div>
+		<div id="app-version">
+			<div id="app-version-inner"></div>
+		</div>
+	</footer>
+	
+	<!-- Fix issue with Electron and 3rd party libraries like jQuery -->
+	<!-- https://stackoverflow.com/questions/32621988/electron-jquery-is-not-defined -->
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+	<script src="../js/jquery-3.3.1.min.js"></script>
+	<script src="../js/default.js"></script>
+	<script src="../js/settings.js"></script>
+
+	<script>if (window.module) module = window.module;</script>
+
+</body>
+
+</html>
+

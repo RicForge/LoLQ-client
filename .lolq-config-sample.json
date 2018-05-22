@@ -1,0 +1,8 @@
+{
+	"//": "Rename this file to .lolq-config.json when done",
+
+	"LOLQ_SERVER_URL": "<URL to where LoLQ-server is running, with http:// or https://>",
+	"LOLQ_SERVER_PORT": "<lolq server port>",
+
+	"LOLQ_UPDATES_URL": "<url to a file containing latest LoLQ version>"
+}

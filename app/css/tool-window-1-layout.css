@@ -1,0 +1,110 @@
+/*
+ *
+ *   ___       ________  ___       ________
+ *  |\  \     |\   __  \|\  \     |\   __  \
+ *  \ \  \    \ \  \|\  \ \  \    \ \  \|\  \
+ *   \ \  \    \ \  \\\  \ \  \    \ \  \\\  \
+ *    \ \  \____\ \  \\\  \ \  \____\ \  \\\  \
+ *     \ \_______\ \_______\ \_______\ \_____  \
+ *      \|_______|\|_______|\|_______|\|___| \__\ 
+ *                                          \|__|
+ *
+ *   Copyright (C) 2018  Ric <ric@lolq.org>
+ *
+ *   https://www.lolq.org
+ *
+ *   This program is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ */
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * My team window layout CSS
+ *
+ * ===============================================================
+ * =============================================================== */
+
+p.detecting {
+	position: absolute;
+	top: 11px;
+	right: 30px;
+}
+
+
+.loading-spinner {
+	right: 20px;
+}
+
+
+#DEVMODE-debugfiles {
+	position: absolute;
+	bottom: 10px;
+	left: 5px;
+	right: 5px;
+	-webkit-app-region: no-drag;
+}
+
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * Queue history
+ *
+ * ===============================================================
+ * =============================================================== */
+
+#queue-history {
+	position: absolute;
+	width: 290px;
+	top: 430px;
+	left: 5px;
+	text-align: center;
+	height: 20px;
+}
+
+.queue-history-prev-btn,
+.queue-history-next-btn {
+	position: absolute;
+	top: 0px;
+	-webkit-app-region: no-drag;
+	height: 15px;
+}
+
+.queue-history-prev-btn {
+	left: 0px;
+	padding-left: 20px;
+}
+
+.queue-history-next-btn {
+	right: 0px;
+	padding-right: 20px;
+}
+
+.queue-history-prev-btn:active {
+	top: 1px;
+	left: 1px;
+}
+
+.queue-history-next-btn:active {
+	top: 1px;
+	right: -1px;
+}
+
+.queue-history-text {
+	position: relative;
+	top: -2px;
+}

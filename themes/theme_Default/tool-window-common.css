@@ -1,0 +1,112 @@
+/*
+ *
+ *   ___       ________  ___       ________
+ *  |\  \     |\   __  \|\  \     |\   __  \
+ *  \ \  \    \ \  \|\  \ \  \    \ \  \|\  \
+ *   \ \  \    \ \  \\\  \ \  \    \ \  \\\  \
+ *    \ \  \____\ \  \\\  \ \  \____\ \  \\\  \
+ *     \ \_______\ \_______\ \_______\ \_____  \
+ *      \|_______|\|_______|\|_______|\|___| \__\
+ *                                          \|__|
+ *
+ *      (c) 2018 Riku Nurminen
+ *
+ *      https://www.lolq.org
+ *
+ */
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * Styling shared by both app windows, for Default theme
+ *
+ * ===============================================================
+ * =============================================================== */
+
+/* 'Waiting for champion select...' text */
+#waiting-for-champselect h2 {
+	font-size: 20px;
+}
+
+
+/* 'Focus League window to continue detection' */
+#leaguewindow-focus {
+	background: #fff;
+	font-size: 11px;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #000;
+
+	/* This theme has a border around window edges, so take 1 pixel off left/right
+       of the 'Focus league window to continue detection' notification */
+	left: 1px;
+	right: 1px;
+}
+
+
+/* Detecting Summoner / Detecting Pick... */
+p.detecting {
+	font-size: 16px;
+}
+
+
+/* Loading spinner, e.g. when user inputs summonername and it's loading */
+.loading-spinner {
+	background: url("../_common-img/loading-spinner.gif") top left no-repeat;
+}
+
+
+/* 'New version available for download' notification */
+#updates {
+	background-color: #fff;
+	color: #000;
+	background: #fff url("../_common-img/download-icon.png") 10px 50% no-repeat;
+}
+
+#updates .updates-content {
+	font-size: 12px;
+}
+
+
+/* Button that switches between summoners / champions views */
+.switch-view-btn {
+	color: #fff;
+	font: normal 12px/1.4 OpenSans, Arial, Helvetica, sans-serif;
+	line-height: 12px;
+	text-align: left;
+	border: none;
+	outline: none;
+	background: url("../_common-img/swap-horizontal-orientation-arrows.png") top left no-repeat;
+}
+
+.switch-view-btn:hover,
+.switch-view-btn:active {
+	background: url("../_common-img/swap-horizontal-orientation-arrows-hover.png") top left no-repeat;
+	color: #9c9fb0;
+}
+
+
+/* Champion stats ELO selectbox */
+.elo-select-style {
+	overflow: hidden;
+	background-color: #383838;
+	font-size: 12px;
+}
+
+.elo-select-style select {
+	border: 0 !important;
+    box-shadow: none;
+	color: #fff;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.elo-select-style select option {
+	background-color: #383838;
+}
+
+.elo-select-style select:focus {
+    outline: none;
+}

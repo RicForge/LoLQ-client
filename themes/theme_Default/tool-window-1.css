@@ -1,0 +1,89 @@
+/*
+ *
+ *   ___       ________  ___       ________
+ *  |\  \     |\   __  \|\  \     |\   __  \
+ *  \ \  \    \ \  \|\  \ \  \    \ \  \|\  \
+ *   \ \  \    \ \  \\\  \ \  \    \ \  \\\  \
+ *    \ \  \____\ \  \\\  \ \  \____\ \  \\\  \
+ *     \ \_______\ \_______\ \_______\ \_____  \
+ *      \|_______|\|_______|\|_______|\|___| \__\
+ *                                          \|__|
+ *
+ *      (c) 2018 Riku Nurminen
+ *
+ *      https://www.lolq.org
+ *
+ */
+
+
+@import url("theme_common.css");
+@import url("tool-window-common.css");
+@import url("summonerData.css");
+@import url("championData.css");
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * 'My team' window styling for Default theme
+ *
+ * ===============================================================
+ * =============================================================== */
+
+/* Use static image as title bar text to avoid having to ship font files */
+header h1 {
+    background: url("img/title-bg-tool-window-1.png") top left no-repeat;
+    width: 69px;
+    height: 16px;
+}
+
+
+/*
+ * Queue history
+ */
+.queue-history-prev-btn,
+.queue-history-next-btn {
+	color: #fff;
+	font: normal 12px/1.4 OpenSans, Arial, Helvetica, sans-serif;
+	line-height: 12px;
+	border: none;
+	outline: none;
+}
+
+.queue-history-prev-btn {
+	background: url("../_common-img/arrow-left.png") top left no-repeat;
+	text-align: left;
+}
+
+.queue-history-prev-btn:hover,
+.queue-history-prev-btn:active {
+	background: url("../_common-img/arrow-left-hover.png") top left no-repeat;
+	color: #9c9fb0;
+}
+
+.queue-history-prev-btn:disabled {
+	background: url("../_common-img/arrow-left-disabled.png") top left no-repeat;
+	color: #474747;
+}
+
+.queue-history-next-btn {
+	background: url("../_common-img/arrow-right.png") top right no-repeat;
+	text-align: right;
+}
+
+.queue-history-next-btn:hover,
+.queue-history-next-btn:active {
+	background: url("../_common-img/arrow-right-hover.png") top right no-repeat;
+	color: #9c9fb0;
+}
+
+.queue-history-next-btn:disabled {
+	background: url("../_common-img/arrow-right-disabled.png") top right no-repeat;
+	color: #474747;
+}
+
+
+.queue-history-text {
+	font-size: 12px;
+	color: #fff;
+}

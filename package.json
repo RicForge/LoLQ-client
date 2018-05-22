@@ -1,0 +1,63 @@
+{
+	"name": "lolq",
+	"version": "0.0.0",
+	"license": "GPL-3.0-or-later",
+	"devDependencies": {
+		"electron": "^1.8.4",
+		"electron-builder": "^20.8.2",
+		"electron-rebuild": "^1.7.3",
+		"windows-build-tools": "^2.2.1"
+	},
+	"build": {
+		"appId": "com.electron.lolq",
+		"win": {
+			"target": "nsis",
+			"icon": "build/icon.ico"
+		},
+		"nsis": {
+			"oneClick": false,
+			"allowToChangeInstallationDirectory": true,
+			"artifactName": "${productName}_Setup_${version}.${ext}"
+		},
+		"files": [
+			"!util${/*}",
+			"!package-lock.json",
+			"!lolq_icon.ico",
+			"!ChangeLog.html",
+			"!screenshot*"
+		],
+		"extraResources": [
+			{
+				"from": "app/util",
+				"to": "util"
+			},
+			{
+				"from": "app/lolq_icon.ico",
+				"to": "lolq_icon.ico"
+			},
+			{
+				"from": "app/ChangeLog.html",
+				"to": "ChangeLog.html"
+			},
+			{
+				"from": "themes",
+				"to": "themes"
+			},
+			{
+				"from": "LOLQ-LICENSE.txt",
+				"to": "../LOLQ-LICENSE.txt"
+			},
+			{
+				"from": ".lolq-config.json",
+				"to": "../.lolq-config.json"
+			}
+		]
+	},
+	"scripts": {
+		"postinstall": "electron-builder install-app-deps",
+		"start": "electron ./app",
+		"dist": "build --win --x64",
+		"post-ship": "NOCOMMIT_post_ship.bat"
+	},
+	"dependencies": {}
+}

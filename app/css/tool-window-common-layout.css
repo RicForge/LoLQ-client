@@ -1,0 +1,177 @@
+/*
+ *
+ *   ___       ________  ___       ________
+ *  |\  \     |\   __  \|\  \     |\   __  \
+ *  \ \  \    \ \  \|\  \ \  \    \ \  \|\  \
+ *   \ \  \    \ \  \\\  \ \  \    \ \  \\\  \
+ *    \ \  \____\ \  \\\  \ \  \____\ \  \\\  \
+ *     \ \_______\ \_______\ \_______\ \_____  \
+ *      \|_______|\|_______|\|_______|\|___| \__\ 
+ *                                          \|__|
+ *
+ *   Copyright (C) 2018  Ric <ric@lolq.org>
+ *
+ *   https://www.lolq.org
+ *
+ *   This program is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ */
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * Layout shared by both app main windows
+ *
+ * ===============================================================
+ * =============================================================== */
+
+#waiting-for-champselect {
+	padding: 40px 20px 0 20px;
+	display: none;
+	text-align: center;
+}
+
+#waiting-for-champselect h2 {
+	margin: 0;
+	padding: 0;
+}
+
+
+#leaguewindow-focus {
+	position: absolute;
+	top: 468px;
+	left: 0px;
+	right: 0px;
+	text-align: center;
+	z-index: 1;
+}
+
+
+.loading-spinner {
+	position: absolute;
+	top: 28px;
+	height: 22px;
+	width: 22px;
+}
+
+
+#updates {
+	position: absolute;
+	height: 70px;
+	bottom: 0px;
+	right: 0px;
+	left: 0px;
+	text-align: left;
+	z-index: 1;
+	-webkit-app-region: drag;
+}
+
+.updates-status {
+	position: absolute;
+	top: 5px;
+	left: 70px;
+}
+
+.updates-content {
+	position: absolute;
+	top: 25px;
+	left: 70px;
+}
+
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * Switch view (summoners/champions) and ELO selectbox
+ *
+ * ===============================================================
+ * =============================================================== */
+
+/*
+ * Button that switches between summoners / champions views
+ */
+.switch-view-btn {
+	position: absolute;
+	top: 405px;
+	left: 5px;
+	-webkit-app-region: no-drag;
+	height: 15px;
+	padding-left: 20px;
+}
+
+.switch-view-btn:active {
+	top: 406px;
+	left: 6px;
+}
+
+
+/*
+ * Champion stats ELO selectbox
+ */
+#champion-data-infobox {
+	position: absolute;
+	width: 80px;
+	top: 405px;
+	right: 5px;
+	-webkit-app-region: no-drag;
+}
+
+.elo-select-style {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	-webkit-app-region: no-drag;
+	width: 80px;
+}
+
+.elo-select-style select {
+    padding: 3px 5px 2px 5px;
+	width: 100%;
+}
+
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * ADS
+ *
+ * ===============================================================
+ * =============================================================== */
+
+#ads-toggle {
+	position: fixed;
+	left: 7px;
+	display: block;
+	padding-left: 15px;
+	text-indent: -15px;
+}
+
+#ads-toggle input {
+	width: 13px;
+	height: 13px;
+	padding: 0;
+	margin:0;
+	vertical-align: bottom;
+	position: relative;
+	top: -2px;
+}
+
+#ad-space {
+	position: fixed;
+	bottom: 36px;
+	left: 6px;
+}

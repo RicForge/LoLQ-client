@@ -1,0 +1,11 @@
+package-lock.json
+/.lolq-config.json
+/NOCOMMIT*
+/app/node_modules
+/app/screenshot*
+/dist/*
+/get_version.php
+/php-7.2
+/*.psd
+/node_modules
+/rcedit*

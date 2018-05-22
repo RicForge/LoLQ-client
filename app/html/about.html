@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+
+	<title>About - LoLQ</title>
+
+	<link rel="stylesheet" href="../css/normalize.css">
+
+	<link rel="stylesheet" href="../css/fonts.css">
+	<link rel="stylesheet" href="../css/common-layout.css">
+	<link rel="stylesheet" href="../css/about-layout.css">
+</head>
+
+<body>
+
+	<header>
+		<div id="title">
+			<h1>About</h1>
+		</div>
+
+		<div id="title-bar-btns">
+			<div id="title-bar-btns-inner">
+				<button id="close-btn-hide">x</button>
+			</div>
+		</div>
+	</header>
+
+	<div id="content">
+		<div id="lolq-info">
+			<span class="about logo-full"></span>
+			<span class="about by-ric-txt">by <a href="http://en.rikunmediatuotanto.fi/#ric">Ric</a></span>
+			<span class="about lolq-version" id="lolq-version"></span>
+			<span class="about changelog">(<a href="" id="changelog-link">ChangeLog</a>)</span>
+		</div>
+
+		<div id="thanksto-section">
+			<span class="about section-title thanksto-txt">Thanks to</span>
+
+			<span class="about thanksto-kne">Kne</span>
+			<span class="about thanksto-kne-info">Bug catcher, beta tester &amp; League consultant</span>
+			<span class="about thanksto-kne-link"><a href="http://na.op.gg/summoner/userName=kennah">Kennah @ OP.GG</a></span>
+
+			<span class="about thanksto-rox">Rox</span>
+			<span class="about thanksto-rox-info">Gave me the original idea to start making the app</span>
+			<span class="about thanksto-rox-quote">- "there one [app] i thought about that annoy me isnt<br>&nbsp;&nbsp;&nbsp;around.. that tells if champ is AD or AP"</span>
+			<span class="about thanksto-rox-link"><a href="https://soundcloud.com/nper-1">Rox's SoundCloud</a></span>
+
+			<span class="about thanksto-also"><strong>Also thanks to:</strong> Almond, Usuf, Sven S&uuml;bert</span>
+		</div>
+
+		<div id="powered-by">
+			<span class="about section-title powered-by-txt">Powered by</span>
+
+			<span class="about powered-by-electron"></span>
+			<span class="about powered-by-electron-info"><script>document.write(process.versions.electron)</script> <a href="https://electronjs.org">https://electronjs.org</a></span>
+
+			<span class="about powered-by-nodejs"></span>
+			<span class="about powered-by-nodejs-info"><script>document.write(process.versions.node)</script> <a href="https://nodejs.org">https://nodejs.org</a></span>
+
+			<span class="about powered-by-tesseract"></span>
+			<span class="about powered-by-tesseract-info">4.0.0alpha <a href="https://github.com/tesseract-ocr/tesseract">Tesseract-OCR</a></span>
+			
+			<span class="about powered-by-chromium"></span>
+			<span class="about powered-by-chromium-info"><script>document.write(process.versions.chrome)</script> <a href="https://www.chromium.org/Home">Chromium</a></span>
+
+			<span class="about powered-by-amazonaws"></span>
+			<span class="about powered-by-amazonaws-info"><a href="https://aws.amazon.com/">Amazon Web Services</a></span>
+		</div>
+
+		<div id="disclaimer">
+			<span class="about section-title disclaimer-txt">Disclaimer</span>
+			<span class="about disclaimer-notice">This product isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends &copy; Riot Games, Inc.</span>
+		</div>
+	</div>
+
+	<footer>
+		<div id="footer-right">
+			<a href="https://www.lolq.org/" title="LoLQ.org website">lolq.org</a> / <a href="https://www.lolq.org/#donate" title="Donate">donate</a>
+		</div>
+		<div id="app-version">
+			<div id="app-version-inner"></div>
+		</div>
+	</footer>
+
+	<!-- Fix issue with Electron and 3rd party libraries like jQuery -->
+	<!-- https://stackoverflow.com/questions/32621988/electron-jquery-is-not-defined -->
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+	<script src="../js/jquery-3.3.1.min.js"></script>
+	<script src="../js/default.js"></script>
+	<script src="../js/about.js"></script>
+
+	<script>if (window.module) module = window.module;</script>
+
+</body>
+
+</html>
+

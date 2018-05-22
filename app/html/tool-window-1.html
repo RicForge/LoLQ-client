@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+
+	<title>LoLQ</title>
+
+	<link rel="stylesheet" href="../css/normalize.css">
+	<link rel="stylesheet" href="../css/balloon.css">
+
+	<link rel="stylesheet" href="../css/fonts.css">
+	<link rel="stylesheet" href="../css/common-layout.css">
+	<link rel="stylesheet" href="../css/tool-window-common-layout.css">
+	<link rel="stylesheet" href="../css/tool-window-1-layout.css">
+	<link rel="stylesheet" href="../css/summonerData-layout.css">
+	<link rel="stylesheet" href="../css/championData-layout.css">
+</head>
+
+<body>
+
+	<header>
+		<div id="title">
+			<h1>My team</h1>
+		</div>
+		
+		<div id="title-bar-btns">
+			<div id="title-bar-btns-inner">
+				<button id="settings-btn">&nbsp;</button>
+				<button id="about-btn">?</button>
+				<button id="min-btn-tray">_</button>
+				<button id="close-btn">x</button>
+			</div>
+		</div>
+	</header>
+		
+	<div id="content">
+		<div id="waiting-for-champselect">
+			<h2>Waiting for champion select</h2>
+			<p class="loading" style="font-size: 50px; margin-top: 20px; margin-left: -30px;"></p>
+		</div>
+
+		<div id="summoners-myteam">
+			<div id="summoner1">
+			</div>
+
+			<div id="summoner2">
+				<button class="s-remove-summoner" onclick="removeSummoner(i); return false;" data-balloon="Remove Summoner" data-balloon-pos="right" data-balloon-blunt>x</button>
+				<span class="summoner s-summoner-info"><strong>PleaseDontCampMe (43) - <span class="s-rank">PLATINUM III</span> 120LP</strong></span>
+				<span class="summoner s-last-games">
+					Last: 5/1/3 as KHA'ZIX <span class="loss">(LOSS)</span> 15h ago<br>
+					As MORDEKAISER: 10/8/12 <span class="win">(WIN)</span> 10months ago
+				</span>
+				<span class="summoner s-last-ten-winrate" data-balloon="Last 10 matches winrate" data-balloon-pos="up-left" data-balloon-blunt>70% (7W 3L)</span>
+				<span class="summoner s-main-champs-txt">Main:</span>
+				<span class="s-main-champ-tooltip s-main-champ-1-tooltip" data-balloon="55/100 games as Jax" data-balloon-pos="up" data-balloon-blunt></span>
+				<img class="summoner s-main-champ-1" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Jax.png" width="23" height="23" alt="[Jax]">
+				<span class="s-main-champ-tooltip s-main-champ-2-tooltip" data-balloon="13/100 games as Jax" data-balloon-pos="up" data-balloon-blunt></span>
+				<img class="summoner s-main-champ-2" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Draven.png" width="23" height="23" alt="[Jax]">
+				<span class="s-main-champ-tooltip s-main-champ-3-tooltip" data-balloon="34/100 games as Jax" data-balloon-pos="up" data-balloon-blunt></span>
+				<img class="summoner s-main-champ-3" src="http://ddragon.leagueoflegends.com/cdn/8.4.1/img/champion/Jinx.png" width="23" height="23" alt="[Jax]">
+				<span class="summoner s-main-roles-txt">TOP / <strong>ADC</strong></span>
+				<span class="summoner s-streak s-loss-streak"><strong>2</strong></span>
+				<span class="summoner s-streak-txt">Loss streak</span>
+				<span class="summoner s-series-txt">Series:</span>
+				<img class="s-series-match1" src="../../themes/_common-img/series-win-dot.png">
+				<img class="s-series-match2" src="../../themes/_common-img/series-win-dot.png">
+				<img class="s-series-match3" src="../../themes/_common-img/series-win-dot.png">
+				<img class="s-series-match4" src="../../themes/_common-img/series-loss-dot.png">
+				<img class="s-series-match5" src="../../themes/_common-img/series-unplayed-dot.png">
+			</div>
+
+			<div id="summoner3">
+			</div>
+			
+			<div id="summoner4">
+			</div>
+
+			<div id="summoner5">
+			</div>
+
+			<button class="switch-view-btn" onclick="switchView('champions', 'myteam');return false;">Champions</button>
+		</div>
+
+		<div id="champions-myteam">
+			<div id="summoner1-champion-data">
+			</div>
+			<div id="summoner2-champion-data">
+			</div>
+			<div id="summoner3-champion-data">
+			</div>
+			<div id="summoner4-champion-data">
+			</div>
+			<div id="summoner5-champion-data">
+			</div>
+
+			<button class="switch-view-btn" onclick="switchView('summoners', 'myteam');return false;">Summoners</button>
+			<div id="champion-data-infobox" data-balloon="" data-balloon-pos="up-right" data-balloon-break data-balloon-blunt>
+				<div class="elo-select-style">
+					<select id="elo-select" onchange="changeELO(this)">
+						<option value="PLATINUM+">PLATINUM+</option>
+						<option value="GOLD">GOLD</option>
+						<option value="SILVER">SILVER</option>
+						<option value="BRONZE">BRONZE</option>
+					</select>
+				</div>
+			</div>
+
+		</div> <!-- </div id="champions-myteam"> -->
+
+		<div id="queue-history">
+			<button class="queue-history-prev-btn" onclick="queueHistoryPrevClick(); return false;" id="queue-history-prev-btn">Prev</button>
+			<span class="queue-history-text" id="queue-history-text"></span>
+			<button class="queue-history-next-btn" onclick="queueHistoryNextClick(); return false;" id="queue-history-next-btn">Next</button>
+		</div>
+
+		<div id="leaguewindow-focus" style="display: none;">Focus league window to continue detection</div>
+
+		<!--
+		<label id="ads-toggle" style="bottom: 40px;"><input type="checkbox" id="ads-toggle-box" onclick="toggleAds(1)"> Disable ad</label>
+		<div id="ad-space" style="display: none;"><img src="../../themes/_common-img/ad-placeholder.png"></div>
+		-->
+
+		<div id="DEVMODE-debugfiles" style="display: none;">
+			Developer mode:<br>
+			<button id="copy-debug-files" onclick="copyDebugFiles(); return false;" disabled>Copy debug log + screenshot to desktop</button><br>
+			<span id="DEVMODE-debugfiles-available"></span>
+		</div>
+
+		<!-- will only show when there's a new release -->
+		<div id="updates" style="display: none;">
+			<span class="updates-status" id="updates-status"></span>
+			<span class="updates-content" id="updates-content"></span>
+		</div>
+	
+	</div> <!-- </div id="content"> -->
+
+	<footer>
+		<div id="footer-right">
+			<a href="https://www.lolq.org/" title="LoLQ.org website">lolq.org</a> / <a href="https://www.lolq.org/#donate" title="Donate">donate</a>
+		</div>
+		<div id="app-version">
+			<div id="app-version-inner"></div>
+		</div>
+	</footer>
+
+	<!-- Fix issue with Electron and 3rd party libraries like jQuery -->
+	<!-- https://stackoverflow.com/questions/32621988/electron-jquery-is-not-defined -->
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+	<script src="../js/jquery-3.3.1.min.js"></script>
+	<script src="../js/default.js"></script>
+	<script src="../js/tool-window-common.js"></script>
+	<script src="../js/tool-window-1.js"></script>
+	<script src="../js/summonerData-renderer.js"></script>
+	<script src="../js/championData-renderer.js"></script>
+
+	<script>if (window.module) module = window.module;</script>
+
+</body>
+
+</html>
+

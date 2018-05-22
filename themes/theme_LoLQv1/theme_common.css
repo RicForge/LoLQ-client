@@ -1,0 +1,209 @@
+/*
+ *
+ *   ___       ________  ___       ________
+ *  |\  \     |\   __  \|\  \     |\   __  \
+ *  \ \  \    \ \  \|\  \ \  \    \ \  \|\  \
+ *   \ \  \    \ \  \\\  \ \  \    \ \  \\\  \
+ *    \ \  \____\ \  \\\  \ \  \____\ \  \\\  \
+ *     \ \_______\ \_______\ \_______\ \_____  \
+ *      \|_______|\|_______|\|_______|\|___| \__\
+ *                                          \|__|
+ *
+ *      (c) 2018 Riku Nurminen
+ *
+ *      https://www.lolq.org
+ *
+ */
+
+
+/*
+ * Settings for LoLQ theme parser:
+ *
+ * LOLQ_USES_TRANSPARENCY:yes (required)
+ *     
+ *    Possible values: yes, no
+ *
+ *    Does this theme use transparency in the window background? E.g. if you use
+ *    body { background-color: transparent }, or just rounded window corners like
+ *    LoLQv1 theme does. NOTE: You don't have to set this to yes if you use transparent
+ *    css elements or images within a non-transparent window, ONLY set it to yes if
+ *    your actual window background uses transparency (so you can see-through to your desktop)
+ *   
+ *    Setting it to yes will ensure that the theme shows up as non-selectable in the settings
+ *    screen if window transparency isn't supported in the host OS (DWM composition /
+ *    Aero Glass disabled)
+ *
+ *
+ * LOLQ_Y_OFFSET: -9 (optional)
+ *
+ *    Y-pixel offset to use for the "Reset window positions" button in the settings window.
+ *    Change this if your theme has non-standard title bar height, so both of the main windows
+ *    will line up with League client / champ select when resetting window positions.
+ *
+ */
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * Common CSS for LoLQv1 theme
+ *
+ * NOTE: Layout properties for header/footer reside here incase you want
+ * to create different height/style title bars and footers for your theme.
+ * The #content div will flex accordingly to header/footer height.
+ *
+ * You might have to fine-tune the top/bottom/left/right properties of
+ * some elements in your window-specific CSS files; see the Default and
+ * LoLQv1 themes for examples.
+ *
+ * ===============================================================
+ * =============================================================== */
+
+
+body {
+	background-color: transparent;
+	font: normal 13px/1.4 OpenSans, Arial, Helvetica, sans-serif;
+	text-rendering: optimizeLegibility;
+	color: #9c9fb0;
+}
+
+
+a:link, a:visited, a:active {
+	color: #9c9fb0;
+	text-decoration: underline;
+}
+
+a:hover {
+	color: #e56325;
+}
+
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * header / title bar
+ *
+ * ===============================================================
+ * =============================================================== */
+
+header {
+	height: 35px;
+	border-bottom: 4px solid #e56325;
+	border-radius: 5px 5px 0px 0px;
+	background: #2e364a url("img/title-bar-icon.png") 10px 5px no-repeat;
+}
+
+
+/* Use static image as title bar text to avoid having to ship font files */
+header h1 {
+	margin: 13px 0 0 41px;
+    /* hide text */
+    text-indent: 100%;
+    white-space: nowrap;
+	overflow: hidden;
+}
+
+
+#title-bar-btns {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	background: url("img/title-bar-btns-bg.png") top left no-repeat; /* /-shape */
+	padding-left: 19px; /* Jump over /-shape */
+}
+
+#title-bar-btns-inner {
+	background-color: #e56325;
+	border-radius: 0 5px 0 0;
+}
+
+#title-bar-btns button {
+	height: 35px;
+	width: 30px;
+	background-color: transparent;
+	border: none;
+	color: #fff;
+	font-size: 16px;
+	outline: none;
+}
+
+#title-bar-btns button:hover {
+	color: #2e364a;
+}
+
+#title-bar-btns button#settings-btn {
+	background: url("img/title-bar-btn-settings.png") 7px 9px no-repeat;
+}
+
+#title-bar-btns button#settings-btn:hover {
+	background: url("img/title-bar-btn-settings-hover.png") 7px 9px no-repeat;
+}
+
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * content
+ *
+ * ===============================================================
+ * =============================================================== */
+
+div#content {
+	background-color: #27293c;
+}
+
+
+#updates a:link, #updates a:visited, #updates a:active {
+	color: #000;
+	text-decoration: underline;
+}
+
+#updates a:hover {
+	color: #e56325;
+}
+
+
+
+/* ===============================================================
+ * ===============================================================
+ *
+ * footer
+ *
+ * ===============================================================
+ * =============================================================== */
+
+footer {
+	height: 24px;
+	padding-top: 6px;
+	border-top: 2px solid #e56325;
+	border-radius: 0px 0px 5px 5px;
+	background-color: #2e364a;
+	font-size: 12px;
+	font-family: OpenSans;
+}
+
+
+footer #footer-right {
+	float: right;
+	padding-right: 10px;
+}
+
+
+footer #app-version {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	height: 30px;
+	padding-right: 17px;
+	background: url("img/footer-version-bg.png") top right no-repeat;
+}
+
+footer #app-version-inner {
+	padding: 6px 5px 0 10px;
+	height: 24px;
+	border-radius: 0 0 0 5px;
+	background-color: #e56325;
+	color: #3e3e3e;
+}
