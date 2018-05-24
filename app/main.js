@@ -144,6 +144,7 @@ const g_screenshotImgPath		= path.join(g_tempDir, g_screenshotImg)
 
 const g_rankedTestImg			= path.join(__dirname, 'img', 'champselectstate-ranked-compare-against.png')
 const g_unrankedTestImg			= path.join(__dirname, 'img', 'champselectstate-unranked-compare-against.png')
+const g_flexqTestImg			= path.join(__dirname, 'img', 'champselectstate-flexq-compare-against.png')
 const g_notChampSelectTestImg 	= path.join(__dirname, 'img', 'not-champselectstate-compare-against.png')
 const g_queuePopTestImg			= path.join(__dirname, 'img', 'queue-pop-compare-against.png')
 const g_firstPickTestImg		= path.join(__dirname, 'img', 'firstpick-compare-against.png')
@@ -1537,12 +1538,11 @@ function _detectLeagueClientState(callback) {
  */
 function _testClientState(dstImg, callback) {
 
-	if(!fs.existsSync(dstImg) || !fs.existsSync(g_notChampSelectTestImg)) {
-		return
-	}
-
 	if(g_lastLeagueClientState == 'championSelectScreen') {
-		
+		if(!fs.existsSync(dstImg) || !fs.existsSync(g_notChampSelectTestImg)) {
+			return
+		}
+			
 		// Compare to see if we've EXITED champ select
 		resemble(dstImg).compareTo(g_notChampSelectTestImg)
 			.ignoreAntialiasing()
@@ -1554,7 +1554,7 @@ function _testClientState(dstImg, callback) {
 					_detectLeagueClientStateFinished = true
 
 					let matchPerc = (100 - data.misMatchPercentage).toFixed(2)
-					_lolqLog('[green]_testClientState(): image match on notChampionSelectScreen (' + matchPerc + '% match)[reset]', 2)
+					_lolqLog('[green]_testClientState(): EXITED champ select (' + matchPerc + '% match to ' + g_notChampSelectTestImg + ')[reset]', 2)
 
 					// Done
 					callback(g_lastLeagueClientState)
@@ -1580,7 +1580,7 @@ function _testClientState(dstImg, callback) {
 										// Champ select EXITED (in "queue popped" screen)
 										g_lastLeagueClientState = 'notChampionSelectScreen'
 										let matchPerc2 = (100 - data2.misMatchPercentage).toFixed(2)
-										_lolqLog('[green]_testClientState(): image match on notChampionSelectScreen/queue pop (' + matchPerc2 + '% match)[reset]', 2)
+										_lolqLog('[green]_testClientState(): EXITED champ select (' + matchPerc2 + '% match to ' + g_queuePopTestImg + ')[reset]', 2)
 									}
 									_detectLeagueClientStateFinished = true
 
@@ -1592,47 +1592,40 @@ function _testClientState(dstImg, callback) {
 			})
 
 	} else if(g_lastLeagueClientState == 'notChampionSelectScreen') {
-		// Compare to see if we've ENTERED champ select (ranked)
-		resemble(dstImg).compareTo(g_rankedTestImg)
-			.ignoreAntialiasing()
-			.onComplete(function(data) {
-				if(Number(data.misMatchPercentage) <= 5) {
 
-					// Champ select ENTERED (ranked)
-					g_lastLeagueClientState = 'championSelectScreen'
-					_detectLeagueClientStateFinished = true
+		let champSelectTests = [
+			g_rankedTestImg,
+			g_unrankedTestImg,
+			g_flexqTestImg
+		]
 
-					let matchPerc = (100 - data.misMatchPercentage).toFixed(2)
-					_lolqLog('[green]_testClientState(): image match on championSelectScreen/RANKED (' + matchPerc + '% match)[reset]', 2)
-
-					// Done
-					callback(g_lastLeagueClientState)
-
-				} else {
-					if(!fs.existsSync(dstImg) || !fs.existsSync(g_unrankedTestImg)) {
-						return
+		async.forEachOfSeries(champSelectTests, function (testImg, idx, cb) {
+			// Compare to see if we've ENTERED champ select
+			resemble(dstImg).compareTo(testImg)
+				.ignoreAntialiasing()
+				.onComplete(function(data) {
+					if(!fs.existsSync(dstImg) || !fs.existsSync(testImg)) {
+						cb(true)
 					}
-			
-					// Compare against unranked test img
-					resemble(dstImg).compareTo(g_unrankedTestImg)
-						.ignoreAntialiasing()
-						.onComplete(function(data2) {
-							if(Number(data2.misMatchPercentage) <= 5) {
-								// Champ select ENTERED (unranked)
-								g_lastLeagueClientState = 'championSelectScreen'
-								let matchPerc2 = (100 - data2.misMatchPercentage).toFixed(2)
-								_lolqLog('[green]_testClientState(): image match on championSelectScreen/UNRANKED (' + matchPerc2 + '% match)[reset]', 2)
-							}
-							_detectLeagueClientStateFinished = true
+					if(Number(data.misMatchPercentage) <= 5) {
+						// Champ select ENTERED
+						g_lastLeagueClientState = 'championSelectScreen'
 
+						let matchPerc = (100 - data.misMatchPercentage).toFixed(2)
+						_lolqLog('[green]_testClientState(): ENTERED champ select (' + matchPerc + '% match to ' + testImg + ')[reset]', 2)
 
-							// Done
-							callback(g_lastLeagueClientState)
-						})
-				}
-			})
+						// Done
+						cb(true)
+					} else {
+						cb()
+					}
+				})
+		}, function(found) {
+			_detectLeagueClientStateFinished = true
+			callback(g_lastLeagueClientState)
+		})
+
 	}
-
 }
 
 
@@ -1724,9 +1717,12 @@ let _stopLoop = false;
 				}
 				g_userClickedOnTray = false
 
-				_processMatchStarted()
+				// Only process and render last Q if we were in champ select
+				if(g_summoners && g_summoners.hasOwnProperty('length') && g_summoners.length == 10) {
+					_processMatchStarted()
 
-				_renderQueue('last')
+					_renderQueue('last')
+				}
 			}
 
 		})
@@ -2002,7 +1998,7 @@ function _processChampSelect() {
 
 		if(	!g_summoners[g_lastDetectSummonerIdx]._busy3 &&
 			(!g_summonerOCRFirstDetect ||
-			(g_summonerOCRFirstDetect && (g_timeNow - g_summonerOCRFirstTime) >= 6)))
+			(g_summonerOCRFirstDetect && (g_timeNow - g_summonerOCRFirstTime) >= 4)))
 		{
 			_readSummonerNameOCR(g_detectSummonerIdx, () => {
 				g_lastDetectSummonerIdx = g_detectSummonerIdx
@@ -2207,7 +2203,7 @@ function _readSummonerNameOCR(i, callback) {
 	
 				_tesseractRead(dstImg, function(text) {
 					if(!g_summonerOCRFirstDetect && text && text.length && text.length >= 3) {
-						_lolqLog('[green]_readSummonerNameOCR(): first detect, waiting 5 seconds to detect summoner names...[reset]', 3)
+						_lolqLog('[green]_readSummonerNameOCR(): first detect, waiting 4 seconds to detect summoner names...[reset]', 3)
 						g_summonerOCRFirstDetect = true
 						g_summonerOCRFirstTime = g_timeNow
 					} else if(g_summonerOCRFirstDetect) {
@@ -2520,10 +2516,7 @@ function _detectChampPick(i, cb) {
 						//.ignoreColors()
 						.onComplete(function(data) {
 							// Require 98%+ champ icon image match
-							// Ornn is special; require 100% image match
-							if(	(champion.key != 'Ornn' && data.misMatchPercentage <= 2) ||
-								(champion.key == 'Ornn' && data.misMatchPercentage == 0))
-							{
+							if(data.misMatchPercentage <= 2) {
 								let matchPerc = (100 - data.misMatchPercentage).toFixed(2)
 
 								_setChampion(i, champion, matchPerc)
