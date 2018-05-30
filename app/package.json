@@ -2,7 +2,7 @@
 	"name": "lolq",
 	"productName": "LoLQ",
 	"description": "Summoner and champion stats for League of Legends pre-game screen",
-	"version": "0.9.1",
+	"version": "0.9.2",
 	"author": "Ric <ric@lolq.org>",
 	"homepage": "https://www.lolq.org",
 	"license": "GPL-3.0-or-later",

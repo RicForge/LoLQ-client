@@ -277,8 +277,9 @@ let g_matchedLobbyNames			= []
 let g_firstClipBoardState		= null
 let g_firstClipBoardStateRead	= false
 var g_lastClipBoard				= null
-let g_champPickTurn				= 1
+let g_champDetectTurn			= 1
 let g_champFirstPick			= null
+let g_champOrder				= null
 let g_getSummonerInfosIdx		= 0
 let g_lastSummonerInfosIdx		= 0
 let g_detectSummonerIdx			= 0
@@ -302,7 +303,6 @@ let g_currentQueueIdx			= -1
 
 let championData				= null
 let g_championDetectListByPlayrate = null
-let g_detectChampPickAlternate	= false
 
 const g_lpszWindow				= Buffer.from(g_leagueWindowTitle + '\0', 'ucs2')
 let g_hWnd						= null
@@ -1454,8 +1454,10 @@ function updateApp() {
 			}
 
 			// Process champ select
-			if(state == 'championSelectScreen')
+			if(state == 'championSelectScreen') {
 				_processChampSelect()
+				_detectChampionsLoop()
+			}
 
 
 			//-------------------------------------------------------
@@ -1638,8 +1640,9 @@ function _resetState() {
 	g_timeInChampSelect			= 0
 	g_chatLobbyNames			= []
 	g_matchedLobbyNames			= []
-	g_champPickTurn				= 1
+	g_champDetectTurn			= 1
 	g_champFirstPick			= null
+	g_champOrder				= null
 	g_getSummonerInfosIdx		= 0
 	g_lastSummonerInfosIdx		= 0
 	g_detectSummonerIdx			= 0
@@ -1755,15 +1758,6 @@ let _stopLoop = false;
 	}
 
 	setTimeout(_mainLoopTimer, 1000)
-})();
-
-
-(function _detectChampionsTimer() {
-	if(_coreLoopCanRun(true) && g_lastLeagueClientState == 'championSelectScreen') {
-		_detectChampionsLoop()
-	}
-
-	setTimeout(_detectChampionsTimer, 3000)
 })();
 
 
@@ -2319,166 +2313,142 @@ Champion pick detection routines
 *********************************************************************
 ********************************************************************/
 
-let _champOrder = null
+let _detectFriendlyChampPickFinished = true
+let _detectEnemyChampPickFinished = true
 
 function _detectChampions() {
-	if(g_champFirstPick == 'enemy') {
-		_champOrder = [5, 0, 1, 6, 7, 2, 3, 8, 9, 4]
-	} else if(g_champFirstPick == 'friendly') {
-		_champOrder = [0, 5, 6, 1, 2, 7, 8, 3, 4, 9]
-	} else if(_champOrder == null) {
-		_lolqLog('[green]_detectChampions(): couldn\'t detect first pick, defaulting to [white][bright]FRIENDLY[reset] [green]team first pick[reset]', 3)
-		_champOrder = [0, 5, 6, 1, 2, 7, 8, 3, 4, 9]
-	}
-
-	g_detectChampPickAlternate = !g_detectChampPickAlternate
-
-	//
-	// TURN 1
-	//
-	if(g_champPickTurn == 1 && !g_summoners[_champOrder[0]]._busy4) {
-		_detectChampPick(_champOrder[0], (found) => {
-			if(found) {
-				// Go to next when a first pick is detected
-				g_champPickTurn++
-			}
-		})
-	}
+	if(g_champOrder == null) {
+		if(g_champFirstPick == 'enemy') {
+			g_champOrder = [5, 0, 1, 6, 7, 2, 3, 8, 9, 4]
+		} else if(g_champFirstPick == 'friendly') {
+			g_champOrder = [0, 5, 6, 1, 2, 7, 8, 3, 4, 9]
+		} else {
+			_lolqLog('[green]_detectChampions(): couldn\'t detect first pick, defaulting to [white][bright]FRIENDLY[reset] [green]team first pick[reset]', 3)
+			g_champFirstPick = 'friendly'
+			g_champOrder = [0, 5, 6, 1, 2, 7, 8, 3, 4, 9]
+		}
 	
-	//
-	// TURN 2
-	//
-	else if(g_champPickTurn == 2 && !g_summoners[_champOrder[1]]._busy4 && !g_summoners[_champOrder[2]]._busy4) {
-		// Keep detecting previous pick until we have either of current ones
-		if(!g_summoners[_champOrder[1]].champData && !g_summoners[_champOrder[2]].champData) {
-			_detectChampPick(_champOrder[0])
-		} else {
-			// Lock previous pick
-			g_summoners[_champOrder[0]]._champLocked = true
-		}
+	}
 
-		if(g_detectChampPickAlternate) {
-			_detectChampPick(_champOrder[1], (found) => {
-				if(found && g_summoners[_champOrder[2]].champData) {
-					g_champPickTurn++
-				}
+	_lockLockablePicks()
+
+	if(_detectFriendlyChampPickFinished) {
+		_detectFriendlyChampPickFinished = false
+		let i = _getNextFriendlyChampDetectIdx()
+		if(i != null) {
+			_detectFriendlyChampPick(i, () => {
+				_detectFriendlyChampPickFinished = true
 			})
 		} else {
-			_detectChampPick(_champOrder[2], (found) => {
-				if(found && g_summoners[_champOrder[1]].champData) {
-					g_champPickTurn++
-				}
-			})
+			_detectFriendlyChampPickFinished = true
 		}
 	}
-	
-	//
-	// TURN 3
-	//
-	else if(g_champPickTurn == 3 && !g_summoners[_champOrder[3]]._busy4 && !g_summoners[_champOrder[4]]._busy4) {
-		// Keep detecting previous picks until we have either of current ones
-		if(!g_summoners[_champOrder[3]].champData && !g_summoners[_champOrder[4]].champData) {
-			_detectChampPick(_champOrder[1])
-			_detectChampPick(_champOrder[2])
-		} else {
-			// Lock previous picks
-			g_summoners[_champOrder[1]]._champLocked = true
-			g_summoners[_champOrder[2]]._champLocked = true
-		}
 
-		if(g_detectChampPickAlternate) {
-			_detectChampPick(_champOrder[3], (found) => {
-				if(found && g_summoners[_champOrder[4]].champData) {
-					g_champPickTurn++
-				}
+	if(_detectEnemyChampPickFinished) {
+		_detectEnemyChampPickFinished = false
+		let i = _getNextEnemyChampDetectIdx()
+		if(i != null) {
+			_detectEnemyChampPick(i, () => {
+				_detectEnemyChampPickFinished = true
 			})
 		} else {
-			_detectChampPick(_champOrder[4], (found) => {
-				if(found && g_summoners[_champOrder[3]].champData) {
-					g_champPickTurn++
-				}
-			})
+			_detectEnemyChampPickFinished = true
 		}
-	}
-	
-	//
-	// TURN 4
-	//
-	else if(g_champPickTurn == 4 && !g_summoners[_champOrder[5]]._busy4 && !g_summoners[_champOrder[6]]._busy4) {
-		// Keep detecting previous picks until we have either of current ones
-		if(!g_summoners[_champOrder[5]].champData && !g_summoners[_champOrder[6]].champData) {
-			_detectChampPick(_champOrder[3])
-			_detectChampPick(_champOrder[4])
-		} else {
-			// Lock previous picks
-			g_summoners[_champOrder[3]]._champLocked = true
-			g_summoners[_champOrder[4]]._champLocked = true
-		}
-
-		if(g_detectChampPickAlternate) {
-			_detectChampPick(_champOrder[5], (found) => {
-				if(found && g_summoners[_champOrder[6]].champData) {
-					g_champPickTurn++
-				}
-			})
-		} else {
-			_detectChampPick(_champOrder[6], (found) => {
-				if(found && g_summoners[_champOrder[5]].champData) {
-					g_champPickTurn++
-				}
-			})
-		}
-	}
-	
-	//
-	// TURN 5
-	//
-	else if(g_champPickTurn == 5 && !g_summoners[_champOrder[7]]._busy4 && !g_summoners[_champOrder[8]]._busy4) {
-		// Keep detecting previous pick until we have either of current ones
-		if(!g_summoners[_champOrder[7]].champData && !g_summoners[_champOrder[8]].champData) {
-			_detectChampPick(_champOrder[5])
-			_detectChampPick(_champOrder[6])
-		} else {
-			// Lock previous picks
-			g_summoners[_champOrder[5]]._champLocked = true
-			g_summoners[_champOrder[6]]._champLocked = true
-		}
-
-		if(g_detectChampPickAlternate) {
-			_detectChampPick(_champOrder[7], (found) => {
-				if(found && g_summoners[_champOrder[8]].champData) {
-					g_champPickTurn++
-				}
-			})
-		} else {
-			_detectChampPick(_champOrder[8], (found) => {
-				if(found && g_summoners[_champOrder[7]].champData) {
-					g_champPickTurn++
-				}
-			})
-		}
-	}
-	
-	//
-	// TURN 6
-	//
-	else if(g_champPickTurn == 6 && !g_summoners[_champOrder[9]]._busy4) {
-		// Keep detecting previous picks until we have last one
-		if(!g_summoners[_champOrder[9]].champData) {
-			_detectChampPick(_champOrder[7])
-			_detectChampPick(_champOrder[8])
-		} else {
-			// Lock previous picks
-			g_summoners[_champOrder[7]]._champLocked = true
-			g_summoners[_champOrder[8]]._champLocked = true
-		}
-
-		_detectChampPick(_champOrder[9])
 	}
 }
 
 
-function _detectChampPick(i, cb) {
+let _skipFriendlyChamp = -1
+
+function _getNextFriendlyChampDetectIdx() {
+	for(let i = 0; i < 5; i++) {
+		if(i == _skipFriendlyChamp) {
+			_skipFriendlyChamp = -1
+			continue
+		}
+		if(g_summoners[i]._champDetectFinished) {
+			// Locked in and final detection done, skip
+			continue
+		} else if(!g_summoners[i]._champDetectFinished && g_summoners[i]._champLocked) {
+			// Locked in, detect once more to be sure
+			g_summoners[i]._champDetectFinished = true
+			return i
+		}
+
+		if(!g_summoners[i]._champLocked) {
+			// Detect until locked in
+			// Skip on next iteration
+			_skipFriendlyChamp = i
+			return i
+		}
+	}
+	return null
+}
+
+
+let _skipEnemyChamp = -1
+
+function _getNextEnemyChampDetectIdx() {
+	for(let i = 5; i < 10; i++) {
+		if(i == _skipEnemyChamp) {
+			_skipEnemyChamp = -1
+			continue
+		}
+		if(g_summoners[i]._champDetectFinished) {
+			// Locked in and final detection done, skip
+			continue
+		} else if(!g_summoners[i]._champDetectFinished && g_summoners[i]._champLocked) {
+			// Locked in, detect once more to be sure
+			g_summoners[i]._champDetectFinished = true
+			return i
+		}
+
+		if(!g_summoners[i]._champLocked) {
+			// Detect until locked in
+			// Skip on next iteration
+			_skipEnemyChamp = i
+			return i
+		}
+	}
+	return null
+}
+
+
+/*
+ * Sets g_summoners[i]._champLocked = true for summoners that have verified
+ * locked champ. We determine this by looking at the next pick -> if there's
+ * a champ there, then the previous one must be locked in.
+ */
+function _lockLockablePicks() {
+	if(g_summoners[g_champOrder[1]].champData || g_summoners[g_champOrder[2]].champData) {
+		g_summoners[g_champOrder[0]]._champLocked = true
+	}
+	if(g_summoners[g_champOrder[3]].champData || g_summoners[g_champOrder[4]].champData) {
+		g_summoners[g_champOrder[1]]._champLocked = true
+		g_summoners[g_champOrder[2]]._champLocked = true
+	}
+	if(g_summoners[g_champOrder[5]].champData || g_summoners[g_champOrder[6]].champData) {
+		g_summoners[g_champOrder[3]]._champLocked = true
+		g_summoners[g_champOrder[4]]._champLocked = true
+	}
+	if(g_summoners[g_champOrder[7]].champData || g_summoners[g_champOrder[8]].champData) {
+		g_summoners[g_champOrder[5]]._champLocked = true
+		g_summoners[g_champOrder[6]]._champLocked = true
+	}
+	if(g_summoners[g_champOrder[9]].champData) {
+		g_summoners[g_champOrder[7]]._champLocked = true
+		g_summoners[g_champOrder[8]]._champLocked = true
+	}
+}
+
+
+/*
+ * Detects friendly team champ pick by comparing champ face images.
+ * 
+ * Why no OCR reading of champ name? Friendly team champ  names gets annoying
+ * background graphic when last pick is locked in, so that messes with the detection.
+ */
+function _detectFriendlyChampPick(i, cb) {
 	if(g_summoners[i]._busy4) {
 		return
 	}
@@ -2494,11 +2464,11 @@ function _detectChampPick(i, cb) {
 			.normalize()
 			.toFile(dstImg, function(err) {
 				if(err) {
-					_lolqLog('[red]_detectChampPick(): npm-sharp ERROR: ' + err + '[reset]', 3)
+					_lolqLog('[red]_detectFriendlyChampPick(): npm-sharp ERROR: ' + err + '[reset]', 3)
 					g_summoners[i]._busy4 = false
+					cb()
 					return
 				}
-
 				let lowestMisMatch = 100
 				let lowestMisMatchChamp = null
 
@@ -2519,10 +2489,11 @@ function _detectChampPick(i, cb) {
 							if(data.misMatchPercentage <= 2) {
 								let matchPerc = (100 - data.misMatchPercentage).toFixed(2)
 
-								_setChampion(i, champion, matchPerc)
+								_setChampion(i, champion.idx, matchPerc)
 
 								callback(true)
 							} else {
+								// Save highest match
 								if(data.misMatchPercentage < lowestMisMatch) {
 									lowestMisMatch = data.misMatchPercentage
 									lowestMisMatchChamp = champion
@@ -2535,37 +2506,101 @@ function _detectChampPick(i, cb) {
 				}, function(found) {
 					g_summoners[i]._busy4 = false
 					if(!found) {
+						// Xayah is special
 						let matchPerc = (100 - lowestMisMatch).toFixed(2)
 						if(lowestMisMatchChamp.name == 'Xayah' && lowestMisMatch < 15) {
-							_setChampion(i, lowestMisMatchChamp, matchPerc)
+							_setChampion(i, lowestMisMatchChamp.idx, matchPerc)
 						} else {
-							_lolqLog('[green]_detectChampPick(): did not detect summoner ' + i + ' yet (highest match ' + matchPerc + '% to ' + lowestMisMatchChamp.key + '.png)[reset]', 3)
+							_lolqLog('[green]_detectFriendlyChampPick(): did not detect summoner ' + i + ' yet (highest match ' + matchPerc + '% to ' + lowestMisMatchChamp.key + '.png)[reset]', 3)
 						}
 					}
-					if(found && cb) cb(true)
+					cb()
 				})
 
 
 			})
+	} else {
+		cb()
 	}
 }
 
-function _setChampion(i, champion, matchPerc) {
-	g_summoners[i].champData = _getChampionData(champion.idx)
 
-	if(champion.name != g_summoners[i]._lastChampName) {
+/*
+ * Detects enemy team champ pick using OCR to read champ name from screen.
+ */
+function _detectEnemyChampPick(i, callback) {
+	if(g_summoners[i]._busy4) {
+		return
+	}
+
+	if(_isValidScreenshot()) {
+		g_summoners[i]._busy4 = true
+
+		let dstImg = path.join(g_tempDir, '_tmp_summoner' + i + '_champPickCrop.png')
+
+		// Crop
+		sharp(g_screenshotImgPath)
+			.extract(g_summoners[i]._champCrop)
+			.flatten()
+			.normalize()
+			.resize(450)  // blow up the cropped image alot so it's easier to
+						  // be optically ready by tesseract
+			.sharpen(5, 1, 2)
+			.negate()
+			.toFile(dstImg, function(err) {
+				if(err) {
+					_lolqLog('[red]_detectEnemyChampPick(): npm-sharp ERROR: ' + err + '[reset]', 3)
+					g_summoners[i]._busy4 = false
+					callback()
+					return
+				}
+
+				_tesseractRead(dstImg, function(text) {
+					// Abort the run if app is quitting or we're no longer in champ select screen
+					if(g_scheduleAppQuit || !_inChampSelectScreen() || g_summoners.length != 10) {
+						g_summoners[i]._busy4 = false
+						callback()
+						return
+					}
+					if(text) {
+						text = text.replace(/(\r\n|\n|\r)/gm, "").trim()
+						let idx = _getChampionArrayIdxByName(text)
+
+						if(idx) {
+							_setChampion(i, idx)
+						} else {
+							_lolqLog('[green]_detectEnemyChampPick(): did not detect summoner ' + i + ' yet (text: ' + text + ')[reset]', 3)
+						}
+					}
+
+					g_summoners[i]._busy4 = false
+					callback()
+			})
+
+		})
+	} else {
+		callback()
+	}
+}
+
+
+function _setChampion(i, champIdx, matchPerc) {
+	let champName = championData.champions[champIdx].name
+	let champKey = championData.champions[champIdx].key
+
+	if(champName != g_summoners[i]._lastChampName) {
+		g_summoners[i].champData = _getChampionDataByArrayIdx(champIdx)
 		g_summoners[i].lastMatchAs = null
 		g_summoners[i]._lastMatchAsNotFound = false
 		g_summoners[i]._summonerDataRendered = false
 		g_summoners[i]._champDataRendered = false
 		if(i < 5) {
-			_lolqLog('[green]_setChampion(): summoner ' + i + ': [white][bright]' + champion.name + '[reset] [green](' + matchPerc + '% match to ' + champion.key + '.png)[reset]', 3)
+			_lolqLog('[green]_setChampion(): summoner ' + i + ': [white][bright]' + champName + '[reset] [green](' + matchPerc + '% match to ' + champKey + '.png)[reset]', 3)
 		} else {
-			_lolqLog('[green]_setChampion(): summoner ' + i + ': [red][bright]' + champion.name + '[reset] [green](' + matchPerc + '% match to ' + champion.key + '.png)[reset]', 3)
+			_lolqLog('[green]_setChampion(): summoner ' + i + ': [red][bright]' + champName + '[reset]', 3)
 		}
-		g_summoners[i]._lastChampName = champion.name
+		g_summoners[i]._lastChampName = champName
 	}
-
 }
 
 
@@ -3710,7 +3745,10 @@ function _initSummonerStruct() {
 
 			champData			: null,		// populated with champion.gg data
 			_lastChampName		: null,
+
+			_champDetectFinished : false,
 			_champLocked		: false,
+			_skipChampDetect	: false,
 
 			_summonerDataRendered : false,
 			_champDataRendered	: false,
@@ -3727,10 +3765,10 @@ function _initSummonerStruct() {
 			},
 
 			_champCrop			: {
-				width			: 42,
-				height			: 36,
+				width			: (i < 5) ? 42 : 156,
+				height			: (i < 5) ? 36 : 18,
 				top				: null,
-				left			: (i < 5) ? 65 : 1211
+				left			: (i < 5) ? 65 : 1040
 			},
 		
 			_notFound			: false,
@@ -3828,7 +3866,7 @@ function _hasLastTenStats(i) {
 }
 
 
-function _getChampionData(idx) {
+function _getChampionDataByArrayIdx(idx) {
 	if(championData) {
 		var champion = championData.champions[idx]
 		champion['icon'] = 'http://ddragon.leagueoflegends.com/cdn/'
@@ -3843,10 +3881,22 @@ function _getChampionData(idx) {
 function _getChampionDataByName(champName) {
 	if(championData) {
 		for(let i = 0, len = championData.champions.length; i < len; i++) {
-			if(championData.champions[i].name == champName) {
+			if(championData.champions[i].name.toUpperCase() == champName.toUpperCase()) {
 				var champion = championData.champions[i]
 				champion['icon'] = _getChampionIconById(champion.id)
 				return champion
+			}
+		}
+	}
+	return null
+}
+
+
+function _getChampionArrayIdxByName(champName) {
+	if(championData) {
+		for(let i = 0, len = championData.champions.length; i < len; i++) {
+			if(championData.champions[i].name.toUpperCase() == champName.toUpperCase()) {
+				return i
 			}
 		}
 	}
@@ -4018,6 +4068,7 @@ function _lolqApi_getData(method, region, param, accessToken, callback) {
 	request(requestURL, { json: true }, (err, res, body) => {
 		if(err) {
 			_lolqLog('[red]_lolqApi_getData(): request() FAILED: ' + err + '[reset]', 3)
+			callback({ statusCode: 666 }, null)
 			return
 		}
 		if(body.hasOwnProperty('statusCode')) {
@@ -4458,7 +4509,9 @@ function _tesseractRead(image, callback) {
  * Checks if league client screenshot is valid screenshot
  */
 function _isValidScreenshot() {
-	if(!g_screenshotReady) return false
+	if(!g_screenshotReady) {
+		return false
+	}
 	if(fs.existsSync(g_screenshotImgPath)) {
 		const stats = fs.statSync(g_screenshotImgPath)
 		// just check that filesize is atleast 100kb+
