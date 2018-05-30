@@ -2398,9 +2398,17 @@ function _getNextEnemyChampDetectIdx() {
 			// Locked in and final detection done, skip
 			continue
 		} else if(!g_summoners[i]._champDetectFinished && g_summoners[i]._champLocked) {
-			// Locked in, detect once more to be sure
-			g_summoners[i]._champDetectFinished = true
-			return i
+			// Locked in
+			if(g_summoners[i].champData) {
+				// Only move to next if we have champData
+				g_summoners[i]._champDetectFinished = true
+				continue
+			} else {
+				// No champData yet, keep detecting this even if it's "locked"
+				// (friendly team can have champ picks ahead of time)
+				_skipEnemyChamp = i
+				return i
+			}
 		}
 
 		if(!g_summoners[i]._champLocked) {
