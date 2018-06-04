@@ -366,8 +366,6 @@ function initApp() {
 
 	_applySettings()
 
-	//_DEVMODE_downloadChampIcons()
-
 	// Add IPC listeners
 	ipcMain.on('showSettings', function() {
 		g_settingsWindow.show()
@@ -1170,6 +1168,8 @@ function _applyChampionData() {
 											championData.patch, championData.lastUpdate)
 			g_toolWindow2.webContents.send('championStatsELOChange', g_settings['championStatsELO'],
 											championData.patch, championData.lastUpdate)
+
+			//_DEVMODE_downloadChampIcons()
 		}
 	})
 }
